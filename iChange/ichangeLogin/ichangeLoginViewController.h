@@ -17,8 +17,10 @@
 @property (weak, nonatomic) IBOutlet UIView *viewUSER;
 @property (weak, nonatomic) IBOutlet UIView *viewPASSWORD;
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
+@property (weak, nonatomic) IBOutlet UIButton *btnHerbalifeTerms;
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)goToSignUp:(id)sender;
+- (IBAction)gotoTerms:(id)sender;
 
 @end

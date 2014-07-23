@@ -72,6 +72,10 @@
     
 }
 
+- (IBAction)gotoTerms:(id)sender {
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.ichange.com/terms"]];
+}
+
 -(void)setViewItems{
     
     [self.viewContainer setBackgroundColor:[UIColor clearColor]];

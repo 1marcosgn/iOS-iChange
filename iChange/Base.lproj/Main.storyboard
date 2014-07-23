@@ -77,17 +77,23 @@
                                     <action selector="goToSignUp:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="4CZ-Lh-S9g"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="© 2014 Herbalife | Terms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yJ-AZ-DGs">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JW-6F-Atj">
                                 <rect key="frame" x="32" y="536" width="257" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="13"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="© 2014 Herbalife | Terms">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="gotoTerms:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="OQ6-36-IEJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="btnHerbalifeTerms" destination="4JW-6F-Atj" id="Xno-vr-WLm"/>
                         <outlet property="btnLogin" destination="VJD-7F-4Hh" id="bTt-FY-nVX"/>
                         <outlet property="txtPassword" destination="FMT-u8-htl" id="LVX-LC-nP0"/>
                         <outlet property="txtUsername" destination="HmZ-r7-UrS" id="D2m-TZ-KxV"/>

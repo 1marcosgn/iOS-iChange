@@ -18,8 +18,10 @@
 @property (weak, nonatomic) IBOutlet UIView *viewID;
 @property (weak, nonatomic) IBOutlet UIView *viewPIN;
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
+@property (weak, nonatomic) IBOutlet UIButton *btnHerbalifeTerms;
 
 - (IBAction)loginAction:(id)sender;
 - (IBAction)goToLogin:(id)sender;
+- (IBAction)gotoTerms:(id)sender;
 
 @end
