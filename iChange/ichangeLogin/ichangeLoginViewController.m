@@ -122,7 +122,6 @@
 #pragma mark - Animations
 -(void)animationMoveTo:(NSString *)moveTo{
 
-#warning animation of keyoboard's motion
     int positionY = 210;
     if ([moveTo isEqualToString:@"UP"]) {
         positionY = 141;
