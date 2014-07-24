@@ -74,6 +74,9 @@
 		53F20BBD19809324000E028E /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB919809324000E028E /* friends@2x.png */; };
 		53F20BC019809331000E028E /* notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BBE19809331000E028E /* notifications.png */; };
 		53F20BC119809331000E028E /* notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BBF19809331000E028E /* notifications@2x.png */; };
+		53F20BC319817541000E028E /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC219817541000E028E /* exclamation.png */; };
+		53F20BC519817549000E028E /* underConstruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC419817549000E028E /* underConstruction.png */; };
+		53F20BC71981776F000E028E /* provisionalLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC61981776F000E028E /* provisionalLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +177,9 @@
 		53F20BB919809324000E028E /* friends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@2x.png"; sourceTree = "<group>"; };
 		53F20BBE19809331000E028E /* notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications.png; sourceTree = "<group>"; };
 		53F20BBF19809331000E028E /* notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications@2x.png"; sourceTree = "<group>"; };
+		53F20BC219817541000E028E /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
+		53F20BC419817549000E028E /* underConstruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underConstruction.png; sourceTree = "<group>"; };
+		53F20BC61981776F000E028E /* provisionalLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = provisionalLogo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +289,9 @@
 		530F7C45196F4D7900316D6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				53F20BC61981776F000E028E /* provisionalLogo.png */,
+				53F20BC419817549000E028E /* underConstruction.png */,
+				53F20BC219817541000E028E /* exclamation.png */,
 				53F20BBE19809331000E028E /* notifications.png */,
 				53F20BBF19809331000E028E /* notifications@2x.png */,
 				53F20BB619809324000E028E /* add.png */,
@@ -492,8 +501,10 @@
 				53F20BBC19809324000E028E /* friends.png in Resources */,
 				537836241977458500ED043D /* gender.png in Resources */,
 				53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */,
+				53F20BC519817549000E028E /* underConstruction.png in Resources */,
 				53F20BAA19807AB8000E028E /* homeMain.png in Resources */,
 				530F7C29196F4BA400316D6E /* Images.xcassets in Resources */,
+				53F20BC71981776F000E028E /* provisionalLogo.png in Resources */,
 				530F7C1B196F4BA400316D6E /* InfoPlist.strings in Resources */,
 				5378355F1975BA3900ED043D /* userinfoUser.png in Resources */,
 				53F20BA41980765B000E028E /* editProfile.png in Resources */,
@@ -509,6 +520,7 @@
 				53F20BC019809331000E028E /* notifications.png in Resources */,
 				53F20BBB19809324000E028E /* add@2x.png in Resources */,
 				53BC559A1970975A00C063DF /* herbalifeLoginViewController.xib in Resources */,
+				53F20BC319817541000E028E /* exclamation.png in Resources */,
 				53BC55811970698C00C063DF /* ConnectionViewController.xib in Resources */,
 				537836281977459000ED043D /* starting.png in Resources */,
 				53F20BB51980855C000E028E /* homeSelected@2x.png in Resources */,
