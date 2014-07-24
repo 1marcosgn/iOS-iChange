@@ -77,6 +77,7 @@
 		53F20BC319817541000E028E /* exclamation.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC219817541000E028E /* exclamation.png */; };
 		53F20BC519817549000E028E /* underConstruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC419817549000E028E /* underConstruction.png */; };
 		53F20BC71981776F000E028E /* provisionalLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BC61981776F000E028E /* provisionalLogo.png */; };
+		53F20BCE1981A03A000E028E /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F20BCD1981A03A000E028E /* UIImage+ImageEffects.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -180,6 +181,8 @@
 		53F20BC219817541000E028E /* exclamation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = exclamation.png; sourceTree = "<group>"; };
 		53F20BC419817549000E028E /* underConstruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = underConstruction.png; sourceTree = "<group>"; };
 		53F20BC61981776F000E028E /* provisionalLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = provisionalLogo.png; sourceTree = "<group>"; };
+		53F20BCC1981A03A000E028E /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		53F20BCD1981A03A000E028E /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,7 @@
 		530F7C4A196F51FE00316D6E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53F20BCB1981A03A000E028E /* ImageEffect */,
 				53F20B9D19806F5C000E028E /* Library */,
 			);
 			name = Resources;
@@ -405,6 +409,15 @@
 				53F20B9F19806F5C000E028E /* SWRevealViewController.m */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		53F20BCB1981A03A000E028E /* ImageEffect */ = {
+			isa = PBXGroup;
+			children = (
+				53F20BCC1981A03A000E028E /* UIImage+ImageEffects.h */,
+				53F20BCD1981A03A000E028E /* UIImage+ImageEffects.m */,
+			);
+			path = ImageEffect;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +562,7 @@
 			files = (
 				537835651975E7A300ED043D /* userDetailsViewController.m in Sources */,
 				53BC558E197074D100C063DF /* NSObject+SBJSON.m in Sources */,
+				53F20BCE1981A03A000E028E /* UIImage+ImageEffects.m in Sources */,
 				53BC55991970975A00C063DF /* herbalifeLoginViewController.m in Sources */,
 				53BC55801970698C00C063DF /* ConnectionViewController.m in Sources */,
 				530F7C27196F4BA400316D6E /* iChangeViewController.m in Sources */,
