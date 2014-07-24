@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface iChangeViewController : UIViewController
+
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButton;
+
+
 
 @end

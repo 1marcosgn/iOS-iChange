@@ -57,6 +57,23 @@
 		53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A41970AA7400C063DF /* UserInfoViewController.xib */; };
 		53BC55A819743D4600C063DF /* topImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A719743D4600C063DF /* topImage.png */; };
 		53BC55AA19743DF000C063DF /* ichange_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A919743DF000C063DF /* ichange_banner.png */; };
+		53F20BA019806F5C000E028E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F20B9F19806F5C000E028E /* SWRevealViewController.m */; };
+		53F20BA31980765B000E028E /* editAccount.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA11980765B000E028E /* editAccount.png */; };
+		53F20BA41980765B000E028E /* editProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA21980765B000E028E /* editProfile.png */; };
+		53F20BA719807666000E028E /* logOut.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA519807666000E028E /* logOut.png */; };
+		53F20BA819807666000E028E /* sendFeedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA619807666000E028E /* sendFeedback.png */; };
+		53F20BAA19807AB8000E028E /* homeMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA919807AB8000E028E /* homeMain.png */; };
+		53F20BAD19807F32000E028E /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F20BAC19807F32000E028E /* SettingsTableViewController.m */; };
+		53F20BB21980855C000E028E /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BAE1980855C000E028E /* home.png */; };
+		53F20BB31980855C000E028E /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BAF1980855C000E028E /* home@2x.png */; };
+		53F20BB41980855C000E028E /* homeSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB01980855C000E028E /* homeSelected.png */; };
+		53F20BB51980855C000E028E /* homeSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB11980855C000E028E /* homeSelected@2x.png */; };
+		53F20BBA19809324000E028E /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB619809324000E028E /* add.png */; };
+		53F20BBB19809324000E028E /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB719809324000E028E /* add@2x.png */; };
+		53F20BBC19809324000E028E /* friends.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB819809324000E028E /* friends.png */; };
+		53F20BBD19809324000E028E /* friends@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BB919809324000E028E /* friends@2x.png */; };
+		53F20BC019809331000E028E /* notifications.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BBE19809331000E028E /* notifications.png */; };
+		53F20BC119809331000E028E /* notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BBF19809331000E028E /* notifications@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +155,25 @@
 		53BC55A41970AA7400C063DF /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		53BC55A719743D4600C063DF /* topImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topImage.png; sourceTree = "<group>"; };
 		53BC55A919743DF000C063DF /* ichange_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ichange_banner.png; sourceTree = "<group>"; };
+		53F20B9E19806F5C000E028E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		53F20B9F19806F5C000E028E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		53F20BA11980765B000E028E /* editAccount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editAccount.png; sourceTree = "<group>"; };
+		53F20BA21980765B000E028E /* editProfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editProfile.png; sourceTree = "<group>"; };
+		53F20BA519807666000E028E /* logOut.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logOut.png; sourceTree = "<group>"; };
+		53F20BA619807666000E028E /* sendFeedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sendFeedback.png; sourceTree = "<group>"; };
+		53F20BA919807AB8000E028E /* homeMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeMain.png; sourceTree = "<group>"; };
+		53F20BAB19807F32000E028E /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		53F20BAC19807F32000E028E /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		53F20BAE1980855C000E028E /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		53F20BAF1980855C000E028E /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		53F20BB01980855C000E028E /* homeSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeSelected.png; sourceTree = "<group>"; };
+		53F20BB11980855C000E028E /* homeSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeSelected@2x.png"; sourceTree = "<group>"; };
+		53F20BB619809324000E028E /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		53F20BB719809324000E028E /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
+		53F20BB819809324000E028E /* friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = friends.png; sourceTree = "<group>"; };
+		53F20BB919809324000E028E /* friends@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "friends@2x.png"; sourceTree = "<group>"; };
+		53F20BBE19809331000E028E /* notifications.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notifications.png; sourceTree = "<group>"; };
+		53F20BBF19809331000E028E /* notifications@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notifications@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +243,8 @@
 				530F7C22196F4BA400316D6E /* Main.storyboard */,
 				530F7C25196F4BA400316D6E /* iChangeViewController.h */,
 				530F7C26196F4BA400316D6E /* iChangeViewController.m */,
+				53F20BAB19807F32000E028E /* SettingsTableViewController.h */,
+				53F20BAC19807F32000E028E /* SettingsTableViewController.m */,
 				530F7C28196F4BA400316D6E /* Images.xcassets */,
 				530F7C17196F4BA400316D6E /* Supporting Files */,
 			);
@@ -245,6 +283,21 @@
 		530F7C45196F4D7900316D6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				53F20BBE19809331000E028E /* notifications.png */,
+				53F20BBF19809331000E028E /* notifications@2x.png */,
+				53F20BB619809324000E028E /* add.png */,
+				53F20BB719809324000E028E /* add@2x.png */,
+				53F20BB819809324000E028E /* friends.png */,
+				53F20BB919809324000E028E /* friends@2x.png */,
+				53F20BAE1980855C000E028E /* home.png */,
+				53F20BAF1980855C000E028E /* home@2x.png */,
+				53F20BB01980855C000E028E /* homeSelected.png */,
+				53F20BB11980855C000E028E /* homeSelected@2x.png */,
+				53F20BA919807AB8000E028E /* homeMain.png */,
+				53F20BA519807666000E028E /* logOut.png */,
+				53F20BA619807666000E028E /* sendFeedback.png */,
+				53F20BA11980765B000E028E /* editAccount.png */,
+				53F20BA21980765B000E028E /* editProfile.png */,
 				537836261977459000ED043D /* starting.png */,
 				537836271977459000ED043D /* units.png */,
 				537836221977458500ED043D /* gender.png */,
@@ -270,6 +323,7 @@
 		530F7C4A196F51FE00316D6E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				53F20B9D19806F5C000E028E /* Library */,
 			);
 			name = Resources;
 			path = iChange/Resources;
@@ -333,6 +387,15 @@
 				53BC55A019709A9300C063DF /* ichangeLoginViewController.m */,
 			);
 			path = ichangeLogin;
+			sourceTree = "<group>";
+		};
+		53F20B9D19806F5C000E028E /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				53F20B9E19806F5C000E028E /* SWRevealViewController.h */,
+				53F20B9F19806F5C000E028E /* SWRevealViewController.m */,
+			);
+			path = Library;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,30 +476,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				537835611975C65600ED043D /* bulb.png in Resources */,
+				53F20BC119809331000E028E /* notifications@2x.png in Resources */,
 				537835591975B5E400ED043D /* userInfoTableViewCell.xib in Resources */,
+				53F20BB21980855C000E028E /* home.png in Resources */,
 				5378361C1976FBCD00ED043D /* photo_green.png in Resources */,
 				537836181976F10D00ED043D /* photo.png in Resources */,
+				53F20BB41980855C000E028E /* homeSelected.png in Resources */,
+				53F20BA819807666000E028E /* sendFeedback.png in Resources */,
 				530F7C48196F4D7900316D6E /* lock.png in Resources */,
 				53BC55A819743D4600C063DF /* topImage.png in Resources */,
 				5378361A1976F6A000ED043D /* selfieTmp.png in Resources */,
 				530F7C49196F4D7900316D6E /* user.png in Resources */,
 				530F7C53196F5CAA00316D6E /* loginBack.png in Resources */,
 				5378355E1975BA3900ED043D /* userinfoPass.png in Resources */,
+				53F20BBC19809324000E028E /* friends.png in Resources */,
 				537836241977458500ED043D /* gender.png in Resources */,
 				53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */,
+				53F20BAA19807AB8000E028E /* homeMain.png in Resources */,
 				530F7C29196F4BA400316D6E /* Images.xcassets in Resources */,
 				530F7C1B196F4BA400316D6E /* InfoPlist.strings in Resources */,
 				5378355F1975BA3900ED043D /* userinfoUser.png in Resources */,
+				53F20BA41980765B000E028E /* editProfile.png in Resources */,
+				53F20BBA19809324000E028E /* add.png in Resources */,
+				53F20BBD19809324000E028E /* friends@2x.png in Resources */,
 				537835661975E7A300ED043D /* userDetailsViewController.xib in Resources */,
+				53F20BA719807666000E028E /* logOut.png in Resources */,
 				530F7C24196F4BA400316D6E /* Main.storyboard in Resources */,
 				537836251977458500ED043D /* height.png in Resources */,
 				53BC55AA19743DF000C063DF /* ichange_banner.png in Resources */,
 				5378355D1975BA3900ED043D /* userinfoCell.png in Resources */,
 				537836141976ED1200ED043D /* shakes_back.png in Resources */,
+				53F20BC019809331000E028E /* notifications.png in Resources */,
+				53F20BBB19809324000E028E /* add@2x.png in Resources */,
 				53BC559A1970975A00C063DF /* herbalifeLoginViewController.xib in Resources */,
 				53BC55811970698C00C063DF /* ConnectionViewController.xib in Resources */,
 				537836281977459000ED043D /* starting.png in Resources */,
+				53F20BB51980855C000E028E /* homeSelected@2x.png in Resources */,
 				537836291977459000ED043D /* units.png in Resources */,
+				53F20BA31980765B000E028E /* editAccount.png in Resources */,
+				53F20BB31980855C000E028E /* home@2x.png in Resources */,
 				5378362119770C8D00ED043D /* userDetailsCellTableViewCell.xib in Resources */,
 				537836161976F05A00ED043D /* takephoto.png in Resources */,
 			);
@@ -468,7 +546,9 @@
 				53BC55A51970AA7400C063DF /* UserInfoViewController.m in Sources */,
 				53BC5592197074D100C063DF /* SBJsonWriter.m in Sources */,
 				530F7C21196F4BA400316D6E /* iChangeAppDelegate.m in Sources */,
+				53F20BA019806F5C000E028E /* SWRevealViewController.m in Sources */,
 				53BC55A119709A9300C063DF /* ichangeLoginViewController.m in Sources */,
+				53F20BAD19807F32000E028E /* SettingsTableViewController.m in Sources */,
 				53BC5591197074D100C063DF /* SBJsonParser.m in Sources */,
 				53BC558F197074D100C063DF /* NSString+SBJSON.m in Sources */,
 				530F7C1D196F4BA400316D6E /* main.m in Sources */,
