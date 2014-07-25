@@ -57,6 +57,10 @@
 		53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A41970AA7400C063DF /* UserInfoViewController.xib */; };
 		53BC55A819743D4600C063DF /* topImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A719743D4600C063DF /* topImage.png */; };
 		53BC55AA19743DF000C063DF /* ichange_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A919743DF000C063DF /* ichange_banner.png */; };
+		53DB0CA31981B882006AA0E1 /* userAlone.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CA21981B882006AA0E1 /* userAlone.png */; };
+		53DB0CA71981BD50006AA0E1 /* initialiChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DB0CA61981BD50006AA0E1 /* initialiChangeViewController.m */; };
+		53DB0CA91981C166006AA0E1 /* backGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CA81981C166006AA0E1 /* backGreen.png */; };
+		53DB0CAB1981CA79006AA0E1 /* backSignup.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CAA1981CA79006AA0E1 /* backSignup.png */; };
 		53F20BA019806F5C000E028E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F20B9F19806F5C000E028E /* SWRevealViewController.m */; };
 		53F20BA31980765B000E028E /* editAccount.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA11980765B000E028E /* editAccount.png */; };
 		53F20BA41980765B000E028E /* editProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA21980765B000E028E /* editProfile.png */; };
@@ -159,6 +163,11 @@
 		53BC55A41970AA7400C063DF /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		53BC55A719743D4600C063DF /* topImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topImage.png; sourceTree = "<group>"; };
 		53BC55A919743DF000C063DF /* ichange_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ichange_banner.png; sourceTree = "<group>"; };
+		53DB0CA21981B882006AA0E1 /* userAlone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userAlone.png; sourceTree = "<group>"; };
+		53DB0CA51981BD50006AA0E1 /* initialiChangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = initialiChangeViewController.h; sourceTree = "<group>"; };
+		53DB0CA61981BD50006AA0E1 /* initialiChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = initialiChangeViewController.m; sourceTree = "<group>"; };
+		53DB0CA81981C166006AA0E1 /* backGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGreen.png; sourceTree = "<group>"; };
+		53DB0CAA1981CA79006AA0E1 /* backSignup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backSignup.png; sourceTree = "<group>"; };
 		53F20B9E19806F5C000E028E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		53F20B9F19806F5C000E028E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		53F20BA11980765B000E028E /* editAccount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editAccount.png; sourceTree = "<group>"; };
@@ -243,6 +252,7 @@
 		530F7C16196F4BA400316D6E /* iChange */ = {
 			isa = PBXGroup;
 			children = (
+				53DB0CA41981BD36006AA0E1 /* initaliChangeView */,
 				53BC559E19709A8000C063DF /* ichangeLogin */,
 				53BC55951970972200C063DF /* herbalifeLogin */,
 				53BC557C197068F000C063DF /* Connection */,
@@ -292,6 +302,9 @@
 		530F7C45196F4D7900316D6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				53DB0CAA1981CA79006AA0E1 /* backSignup.png */,
+				53DB0CA81981C166006AA0E1 /* backGreen.png */,
+				53DB0CA21981B882006AA0E1 /* userAlone.png */,
 				53F20BC61981776F000E028E /* provisionalLogo.png */,
 				53F20BC419817549000E028E /* underConstruction.png */,
 				53F20BC219817541000E028E /* exclamation.png */,
@@ -402,6 +415,15 @@
 			path = ichangeLogin;
 			sourceTree = "<group>";
 		};
+		53DB0CA41981BD36006AA0E1 /* initaliChangeView */ = {
+			isa = PBXGroup;
+			children = (
+				53DB0CA51981BD50006AA0E1 /* initialiChangeViewController.h */,
+				53DB0CA61981BD50006AA0E1 /* initialiChangeViewController.m */,
+			);
+			path = initaliChangeView;
+			sourceTree = "<group>";
+		};
 		53F20B9D19806F5C000E028E /* Library */ = {
 			isa = PBXGroup;
 			children = (
@@ -501,9 +523,11 @@
 				53F20BC119809331000E028E /* notifications@2x.png in Resources */,
 				537835591975B5E400ED043D /* userInfoTableViewCell.xib in Resources */,
 				53F20BB21980855C000E028E /* home.png in Resources */,
+				53DB0CA31981B882006AA0E1 /* userAlone.png in Resources */,
 				5378361C1976FBCD00ED043D /* photo_green.png in Resources */,
 				537836181976F10D00ED043D /* photo.png in Resources */,
 				53F20BB41980855C000E028E /* homeSelected.png in Resources */,
+				53DB0CAB1981CA79006AA0E1 /* backSignup.png in Resources */,
 				53F20BA819807666000E028E /* sendFeedback.png in Resources */,
 				530F7C48196F4D7900316D6E /* lock.png in Resources */,
 				53BC55A819743D4600C063DF /* topImage.png in Resources */,
@@ -515,6 +539,7 @@
 				537836241977458500ED043D /* gender.png in Resources */,
 				53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */,
 				53F20BC519817549000E028E /* underConstruction.png in Resources */,
+				53DB0CA91981C166006AA0E1 /* backGreen.png in Resources */,
 				53F20BAA19807AB8000E028E /* homeMain.png in Resources */,
 				530F7C29196F4BA400316D6E /* Images.xcassets in Resources */,
 				53F20BC71981776F000E028E /* provisionalLogo.png in Resources */,
@@ -572,6 +597,7 @@
 				53BC55A51970AA7400C063DF /* UserInfoViewController.m in Sources */,
 				53BC5592197074D100C063DF /* SBJsonWriter.m in Sources */,
 				530F7C21196F4BA400316D6E /* iChangeAppDelegate.m in Sources */,
+				53DB0CA71981BD50006AA0E1 /* initialiChangeViewController.m in Sources */,
 				53F20BA019806F5C000E028E /* SWRevealViewController.m in Sources */,
 				53BC55A119709A9300C063DF /* ichangeLoginViewController.m in Sources */,
 				53F20BAD19807F32000E028E /* SettingsTableViewController.m in Sources */,

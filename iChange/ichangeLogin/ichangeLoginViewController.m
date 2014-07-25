@@ -77,21 +77,72 @@
 //Set the basic initial properties for the viewController
 -(void)setViewItems{
     
+    [self.navigationController setNavigationBarHidden:NO];
+    
     loginSuccess = NO;
     
     [self.viewContainer setBackgroundColor:[UIColor clearColor]];
     [self.txtUsername setDelegate:self];
     [self.txtPassword setDelegate:self];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"loginBack.png"];
-    UIColor *backgorund = [[UIColor alloc] initWithPatternImage:backgroundImage];
-    [self.view setBackgroundColor:backgorund];
+    UIImage *backgroundImage = [UIImage imageNamed:@"backSignup.png"];
+    UIColor *background = [[UIColor alloc] initWithPatternImage:backgroundImage];
+    [self.view setBackgroundColor:background];
     
     UITapGestureRecognizer *gestureDismiss = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:gestureDismiss];
+    
+    self.btnLogin.layer.cornerRadius = self.btnLogin.frame.size.height / 2;
+    self.btnLogin.layer.masksToBounds = YES;
+    
+    [self.txtUsername setBackgroundColor:[UIColor clearColor]];
+    [self.txtPassword setBackgroundColor:[UIColor clearColor]];
 
+    UIColor *color = [UIColor whiteColor];
+    
+    self.txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"iChange Username" attributes:@{NSForegroundColorAttributeName: [color colorWithAlphaComponent:0.4]}];
+
+    self.txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [color colorWithAlphaComponent:0.4]}];
+    
+    [self.txtPassword.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [self.txtPassword.layer setBorderWidth:2.0f];
+    self.txtPassword.layer.cornerRadius = self.txtPassword.frame.size.height / 2;
+    self.txtPassword.layer.masksToBounds = YES;
+    
+    [self.txtUsername.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [self.txtUsername.layer setBorderWidth:2.0f];
+    self.txtUsername.layer.cornerRadius = self.txtUsername.frame.size.height / 2;
+    self.txtUsername.layer.masksToBounds = YES;
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
+    [self.navigationController.navigationBar setOpaque:NO];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(returnPrevious)];
+    
+    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+
+    [self.navigationItem setTitle:@"Log in"];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(returnPrevious)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [self.view addGestureRecognizer:swipeRight];
+    
+    
 }
 
+-(void)returnPrevious{
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
+}
 
 
 #pragma mark - UITextField Delegates

@@ -82,13 +82,86 @@
     [self.txtDistributorID setDelegate:self];
     [self.txtDistributorPIN setDelegate:self];
 
-    UIImage *backgroundImage = [UIImage imageNamed:@"loginBack.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"backSignup.png"];
     UIColor *backgorund = [[UIColor alloc] initWithPatternImage:backgroundImage];
     [self.view setBackgroundColor:backgorund];
     
     UITapGestureRecognizer *gestureDismiss = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:gestureDismiss];
     
+    
+    self.btnLogin.layer.cornerRadius = self.btnLogin.frame.size.height / 2;
+    self.btnLogin.layer.masksToBounds = YES;
+    
+    [self.txtDistributorID setBackgroundColor:[UIColor clearColor]];
+    [self.txtDistributorPIN setBackgroundColor:[UIColor clearColor]];
+    
+    UIColor *color = [UIColor whiteColor];
+    
+    self.txtDistributorID.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"iChange Username" attributes:@{NSForegroundColorAttributeName: [color colorWithAlphaComponent:0.4]}];
+    
+    self.txtDistributorPIN.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Password" attributes:@{NSForegroundColorAttributeName: [color colorWithAlphaComponent:0.4]}];
+    
+    [self.txtDistributorPIN.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [self.txtDistributorPIN.layer setBorderWidth:2.0f];
+    self.txtDistributorPIN.layer.cornerRadius = self.txtDistributorPIN.frame.size.height / 2;
+    self.txtDistributorPIN.layer.masksToBounds = YES;
+    
+    [self.txtDistributorID.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [self.txtDistributorID.layer setBorderWidth:2.0f];
+    self.txtDistributorID.layer.cornerRadius = self.txtDistributorID.frame.size.height / 2;
+    self.txtDistributorID.layer.masksToBounds = YES;
+    
+    [self setNeedsStatusBarAppearanceUpdate];
+    
+    
+    UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    NSDictionary *attributesTitle = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:20], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    
+    backButton.tintColor = [UIColor whiteColor];
+    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    UINavigationItem *itemNext = [[UINavigationItem alloc]initWithTitle:@"Sign Up"];
+    itemNext.leftBarButtonItem = backButton;
+    navBar.items = [NSArray arrayWithObject:itemNext];
+    [navBar setTitleTextAttributes:attributesTitle];
+    
+    navBar.barStyle = UIBarStyleBlackTranslucent;
+    
+    [navBar setOpaque:NO];
+    
+    [self.view addSubview:navBar];
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [self.view addGestureRecognizer:swipeRight];
+
+    
+    
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return UIStatusBarStyleLightContent;
+    
+}
+
+-(void)back{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.35;
+    transition.timingFunction =
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromLeft;
+    
+    UIView *containerView = self.view.window;
+    [containerView.layer addAnimation:transition forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{

@@ -45,7 +45,7 @@
     
     [self.navigationItem setTitle:@"Home"];
     
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
 
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
