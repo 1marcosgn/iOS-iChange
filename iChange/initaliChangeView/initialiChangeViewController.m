@@ -56,10 +56,9 @@
     
 }
 
-- (IBAction)logIn:(id)sender {
-}
 
 - (IBAction)goHerbalifeTerms:(id)sender {
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.ichange.com/terms"]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{

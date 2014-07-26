@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface userDetailsCellTableViewCell : UITableViewCell
+@interface userDetailsCellTableViewCell : UITableViewCell <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgCell;
 @property (weak, nonatomic) IBOutlet UILabel *lblDescription;
-@property (weak, nonatomic) IBOutlet UIView *viewContainer;
+@property (weak, nonatomic) IBOutlet UITextField *txtInformation;
+
 
 @end

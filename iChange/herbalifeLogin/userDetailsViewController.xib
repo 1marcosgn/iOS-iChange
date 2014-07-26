@@ -8,7 +8,6 @@
             <connections>
                 <outlet property="btnTakeaSelfie" destination="dmf-wu-rAa" id="MWr-To-MPJ"/>
                 <outlet property="imgCover" destination="gNs-hz-GFo" id="91m-la-hiq"/>
-                <outlet property="lblUsername" destination="uA5-xq-nMG" id="4Gq-zl-X6E"/>
                 <outlet property="tableUserDetails" destination="eV5-A3-Jwe" id="tR5-4q-8CK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -18,32 +17,25 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" alpha="0.49999999999999961" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shakes_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="gNs-hz-GFo">
-                    <rect key="frame" x="0.0" y="64" width="321" height="164"/>
+                <imageView userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="shakes_back.png" translatesAutoresizingMaskIntoConstraints="NO" id="gNs-hz-GFo">
+                    <rect key="frame" x="0.0" y="54" width="321" height="164"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 </imageView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-A3-Jwe">
-                    <rect key="frame" x="0.0" y="256" width="320" height="248"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="50" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-A3-Jwe">
+                    <rect key="frame" x="0.0" y="165" width="320" height="403"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dmf-wu-rAa">
-                    <rect key="frame" x="122" y="175" width="77" height="77"/>
+                    <rect key="frame" x="122" y="125" width="77" height="77"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="photo_green.png">
+                    <state key="normal" image="selfieTmp.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="letmeTakeaSelfie:" destination="-1" eventType="touchUpInside" id="jxW-fq-zuB"/>
                     </connections>
                 </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Vahak Matavosian" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="232" translatesAutoresizingMaskIntoConstraints="NO" id="uA5-xq-nMG">
-                    <rect key="frame" x="44" y="79" width="232" height="93"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
-                    <color key="textColor" white="0.29709551411290325" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -51,7 +43,7 @@
         </view>
     </objects>
     <resources>
-        <image name="photo_green.png" width="128" height="128"/>
+        <image name="selfieTmp.png" width="128" height="128"/>
         <image name="shakes_back.png" width="552" height="368"/>
     </resources>
 </document>

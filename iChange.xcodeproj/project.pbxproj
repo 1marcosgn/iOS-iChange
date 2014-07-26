@@ -61,6 +61,8 @@
 		53DB0CA71981BD50006AA0E1 /* initialiChangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DB0CA61981BD50006AA0E1 /* initialiChangeViewController.m */; };
 		53DB0CA91981C166006AA0E1 /* backGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CA81981C166006AA0E1 /* backGreen.png */; };
 		53DB0CAB1981CA79006AA0E1 /* backSignup.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CAA1981CA79006AA0E1 /* backSignup.png */; };
+		53DB0CB11982BE90006AA0E1 /* newLogback.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CB01982BE90006AA0E1 /* newLogback.png */; };
+		53DBC5551982C80A00564B8B /* backArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DBC5541982C80A00564B8B /* backArrow.png */; };
 		53F20BA019806F5C000E028E /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53F20B9F19806F5C000E028E /* SWRevealViewController.m */; };
 		53F20BA31980765B000E028E /* editAccount.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA11980765B000E028E /* editAccount.png */; };
 		53F20BA41980765B000E028E /* editProfile.png in Resources */ = {isa = PBXBuildFile; fileRef = 53F20BA21980765B000E028E /* editProfile.png */; };
@@ -168,6 +170,8 @@
 		53DB0CA61981BD50006AA0E1 /* initialiChangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = initialiChangeViewController.m; sourceTree = "<group>"; };
 		53DB0CA81981C166006AA0E1 /* backGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backGreen.png; sourceTree = "<group>"; };
 		53DB0CAA1981CA79006AA0E1 /* backSignup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backSignup.png; sourceTree = "<group>"; };
+		53DB0CB01982BE90006AA0E1 /* newLogback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newLogback.png; sourceTree = "<group>"; };
+		53DBC5541982C80A00564B8B /* backArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backArrow.png; sourceTree = "<group>"; };
 		53F20B9E19806F5C000E028E /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		53F20B9F19806F5C000E028E /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		53F20BA11980765B000E028E /* editAccount.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = editAccount.png; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 		530F7C45196F4D7900316D6E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				53DBC5541982C80A00564B8B /* backArrow.png */,
+				53DB0CB01982BE90006AA0E1 /* newLogback.png */,
 				53DB0CAA1981CA79006AA0E1 /* backSignup.png */,
 				53DB0CA81981C166006AA0E1 /* backGreen.png */,
 				53DB0CA21981B882006AA0E1 /* userAlone.png */,
@@ -519,6 +525,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53DBC5551982C80A00564B8B /* backArrow.png in Resources */,
 				537835611975C65600ED043D /* bulb.png in Resources */,
 				53F20BC119809331000E028E /* notifications@2x.png in Resources */,
 				537835591975B5E400ED043D /* userInfoTableViewCell.xib in Resources */,
@@ -554,6 +561,7 @@
 				537836251977458500ED043D /* height.png in Resources */,
 				53BC55AA19743DF000C063DF /* ichange_banner.png in Resources */,
 				5378355D1975BA3900ED043D /* userinfoCell.png in Resources */,
+				53DB0CB11982BE90006AA0E1 /* newLogback.png in Resources */,
 				537836141976ED1200ED043D /* shakes_back.png in Resources */,
 				53F20BC019809331000E028E /* notifications.png in Resources */,
 				53F20BBB19809324000E028E /* add@2x.png in Resources */,

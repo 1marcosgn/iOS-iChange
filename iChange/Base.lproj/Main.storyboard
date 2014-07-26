@@ -318,8 +318,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logIn:" destination="KVe-dT-cYe" eventType="touchUpInside" id="BBR-MJ-OQE"/>
-                                    <segue destination="vXZ-lx-hvc" kind="push" id="mfw-zu-IaI"/>
+                                    <segue destination="vXZ-lx-hvc" kind="push" id="Zw1-Cu-HFc"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="userAlone.png" translatesAutoresizingMaskIntoConstraints="NO" id="dyF-qs-9bs">

@@ -62,7 +62,7 @@
         NSString *prevString = [JSONWriter stringWithObject:paramFinal];
         NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
         
-        //Method to consume a certain web service (you will have to send the headers as paraneters only if it's required
+        //Method to consume a certain web service (you will have to send the headers as parameters only if it's required
         [connection executeService:@"login" withData:jsonData type:@"POST" headers:nil];
         
     }
@@ -85,7 +85,7 @@
     [self.txtUsername setDelegate:self];
     [self.txtPassword setDelegate:self];
     
-    UIImage *backgroundImage = [UIImage imageNamed:@"backSignup.png"];
+    UIImage *backgroundImage = [UIImage imageNamed:@"newLogback.png"];
     UIColor *background = [[UIColor alloc] initWithPatternImage:backgroundImage];
     [self.view setBackgroundColor:background];
     
@@ -118,15 +118,19 @@
     
     [self.navigationController.navigationBar setOpaque:NO];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor grayColor], NSForegroundColorAttributeName, nil];
     
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(returnPrevious)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"backArrow.png"] forState:UIControlStateNormal];
+    button.frame=CGRectMake(0,0, 29, 29);
+    [button addTarget:self action:@selector(returnPrevious) forControlEvents:UIControlEventTouchUpInside];
     
-    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     self.navigationItem.leftBarButtonItem = backButton;
     
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
 
     [self.navigationItem setTitle:@"Log in"];
     

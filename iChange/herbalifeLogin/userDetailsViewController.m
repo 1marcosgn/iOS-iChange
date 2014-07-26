@@ -14,6 +14,7 @@
     NSMutableDictionary *dictionaryGlobal;
     NSString *gender;
     NSString *height;
+    NSMutableArray *modelArray;
 }
 
 @end
@@ -41,6 +42,12 @@
 
 -(void)setViewItems{
     
+    modelArray = [[NSMutableArray alloc]init];
+    
+    for (int i = 0; i < 11; i++) {
+        [modelArray addObject:@""];
+    }
+    
     dictionaryGlobal = [NSMutableDictionary dictionary];
     gender = @"female";
 
@@ -49,24 +56,37 @@
     label.backgroundColor = [UIColor clearColor];
     label.font = [UIFont fontWithName:@"Futura-medium" size:18];
     label.textAlignment = NSTextAlignmentCenter;
-    label.textColor = [UIColor whiteColor];
+    label.textColor = [[UIColor whiteColor]colorWithAlphaComponent:0.5];
     label.text = @"Create Account";
     self.navigationItem.titleView = label;
     
-    UIColor *backColor = [UIColor colorWithRed:151.0f/255.0f green:192.0f/255.0f blue:63.0f/255.0f alpha:1.0f];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
     
-    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"| DONE" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"BACK |" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    UIColor *backColor = [UIColor colorWithRed:124.0f/255.0f green:124.0f/255.0f blue:124.0f/255.0f alpha:1.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    UIBarButtonItem *actionButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(done)];
+   
+    
+    //UIBarButtonItem *backButton = [[UIBarButtonItem alloc]initWithTitle:@"BACK |" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"backArrow.png"] forState:UIControlStateNormal];
+    button.frame=CGRectMake(0,0, 29, 29);
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
     
     [actionButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    //[backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
     self.navigationItem.leftBarButtonItem = backButton;
     self.navigationItem.rightBarButtonItem = actionButton;
     
     self.navigationController.navigationBar.barTintColor = backColor;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(back)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    
+    [self.view addGestureRecognizer:swipeRight];
+    
 
     [self roundImage];
     
@@ -84,7 +104,17 @@
 
 -(void)back{
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.35;
+    transition.timingFunction =
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionMoveIn;
+    transition.subtype = kCATransitionFromLeft;
+    
+    UIView *containerView = self.view.window;
+    [containerView.layer addAnimation:transition forKey:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
     
 }
 
@@ -96,6 +126,8 @@
     else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please complete all the information before continue" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
+        
+        NSLog(@"the model is: %@", modelArray);
     }
 }
 
@@ -244,38 +276,92 @@
 #pragma mark - UITableview delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 4;
+    
+    if (section == 0) {
+        return 4;
+    }
+    else if (section == 1){
+        return 6;
+    }
+    else{
+        return 0;
+    }
+    
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    
+    UILabel *lblTitleforSection = [[UILabel alloc]initWithFrame:CGRectMake(12, 12, 161, 30)];
+    [lblTitleforSection setFont:[UIFont fontWithName:@"Futura-medium" size:18]];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 80)];
+    [headerView.layer setBorderColor:[UIColor grayColor].CGColor];
+    headerView.layer.borderWidth = 0.3;
+    
+    [headerView addSubview:lblTitleforSection];
+    
+    [lblTitleforSection setTextColor:[UIColor grayColor]];
+    UIColor *backColor = [UIColor colorWithRed:240.0f/255.0f green:240.0f/255.0f blue:240.0f/255.0f alpha:1.0f];
+    
+    if (section == 0){
+        [headerView setBackgroundColor:backColor];
+        [lblTitleforSection setText:@"ACCOUNT"];
+    }
+    else if(section == 1){
+        [headerView setBackgroundColor:backColor];
+        [lblTitleforSection setText:@"ABOUT ME"];
+    }
+    return headerView;
+    
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    
+    NSArray *cells = [self.tableUserDetails visibleCells];
+    
+    for (userDetailsCellTableViewCell *element in cells) {
+        NSString *tagText = [NSString stringWithFormat:@"%ld", (long)element.txtInformation.tag];
+        [modelArray replaceObjectAtIndex:[tagText intValue] withObject:element.txtInformation.text];
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+
     //Identifier
     NSString *cellIdentifier = @"userInfoCell";
     //Cells
     userDetailsCellTableViewCell *cell = (userDetailsCellTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
+    
+    NSInteger section = [indexPath section];
+    
     switch (indexPath.row) {
         case 0:
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
-                
-                [cell.imgCell setImage:[UIImage imageNamed:@"units.png"]];
-                [cell.lblDescription setText:@"Units of Measure"];
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 
-                //Create Uitextfield
-                UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 174, 40)];
-                textField.font = [UIFont fontWithName:@"Futura-medium" size:14];
-                textField.placeholder = @"Imperial (US)";
-                textField.textAlignment = NSTextAlignmentCenter;
-                [textField setDelegate:self];
-                [textField setTag:0];
-                [cell.viewContainer addSubview:textField];
+                if (section == 0) {
+                    [cell.txtInformation setTag:0];
+                    [cell.lblDescription setText:@"Username"];
+                    [cell.txtInformation setPlaceholder:@"Type your username"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:0];
+                    
+                }
+                else if (section == 1){
+                    [cell.txtInformation setTag:5];
+                    [cell.lblDescription setText:@"First Name"];
+                    [cell.txtInformation setPlaceholder:@"Type your name"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:5];
+                    
+                }
+                
                 
             }
             return cell;
@@ -285,35 +371,23 @@
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
-                UIColor *borderColor = [UIColor colorWithRed:157.0f/255.0f green:157.0f/255.0f blue:157.0f/255.0f alpha:1.0f];
-    
-                [cell.imgCell setImage:[UIImage imageNamed:@"height.png"]];
-                [cell.lblDescription setText:@"Height"];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 
-                //Create Uitextfield Ft's
-                UITextField *textFieldFt = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
-                textFieldFt.borderStyle = UITextBorderStyleLine;
-                textFieldFt.layer.borderColor = borderColor.CGColor;
-                textFieldFt.font = [UIFont fontWithName:@"Futura-medium" size:14];
-                textFieldFt.placeholder = @"ft";
-                textFieldFt.textAlignment = NSTextAlignmentCenter;
-                [textFieldFt setDelegate:self];
-                [textFieldFt setKeyboardType:UIKeyboardTypeNumberPad];
-                [textFieldFt setTag:1];
-                [cell.viewContainer addSubview:textFieldFt];
-                
-                //Create Uitextfield in's
-                UITextField *textFieldIn = [[UITextField alloc]initWithFrame:CGRectMake(94, 0, 80, 40)];
-                textFieldIn.borderStyle = UITextBorderStyleLine;
-                textFieldIn.layer.borderColor = borderColor.CGColor;
-                textFieldIn.font = [UIFont fontWithName:@"Futura-medium" size:14];
-                textFieldIn.placeholder = @"in";
-                textFieldIn.textAlignment = NSTextAlignmentCenter;
-                [textFieldIn setDelegate:self];
-                [textFieldIn setKeyboardType:UIKeyboardTypeNumberPad];
-                [textFieldIn setTag:2];
-                [cell.viewContainer addSubview:textFieldIn];
+                if (section == 0) {
+                    [cell.txtInformation setTag:1];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Password"];
+                    [cell.txtInformation setPlaceholder:@"Type your password"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:1];
+                    
+                }
+                else if(section == 1){
+                    [cell.txtInformation setTag:6];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Last Name"];
+                    [cell.txtInformation setPlaceholder:@"Type your last name"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:6];
+                    
+                }
                 
             }
             return cell;
@@ -323,20 +397,23 @@
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
-                [cell.imgCell setImage:[UIImage imageNamed:@"starting.png"]];
-                [cell.lblDescription setText:@"Starting Weight"];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                if (section == 0) {
+                    [cell.txtInformation setTag:2];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Confirm Password"];
+                    [cell.txtInformation setPlaceholder:@"re-type your password"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:2];
+                    
+                }
+                else if (section == 1){
+                    [cell.txtInformation setTag:7];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Height"];
+                    [cell.txtInformation setPlaceholder:@"ft. in."];
+                    cell.txtInformation.text = [modelArray objectAtIndex:7];
+                    
+                }
                 
-                //Create Uitextfield
-                UITextField *textField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, 174, 40)];
-                //textField.borderStyle = UITextBorderStyleLine;
-                textField.font = [UIFont fontWithName:@"Futura-medium" size:14];
-                textField.placeholder = @"lbs";
-                textField.textAlignment = NSTextAlignmentCenter;
-                [textField setDelegate:self];
-                [textField setKeyboardType:UIKeyboardTypeDecimalPad];
-                [textField setTag:3];
-                [cell.viewContainer addSubview:textField];
             }
             return cell;
             break;
@@ -345,29 +422,70 @@
             if (cell == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
-                [cell.imgCell setImage:[UIImage imageNamed:@"gender.png"]];
-                [cell.lblDescription setText:@"Gender"];
-                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-                
-                //Segmented controll
-                NSArray *itemsArray = [NSArray arrayWithObjects:@"Female", @"Male", nil];
-                UISegmentedControl *segmentedControl = [[UISegmentedControl alloc]initWithItems:itemsArray];
-                segmentedControl.frame = CGRectMake(0, 6, 174, 29);
-                //segmentedControl.segmentedControlStyle
-                [segmentedControl addTarget:self action:@selector(selectFemaleMale:) forControlEvents:UIControlEventValueChanged];
-                segmentedControl.selectedSegmentIndex = 0;
-                UIColor *backColor = [UIColor colorWithRed:151.0f/255.0f green:192.0f/255.0f blue:63.0f/255.0f alpha:1.0f];
-                [segmentedControl setTintColor:backColor];
-                [cell.viewContainer addSubview:segmentedControl];
+                if (section == 0) {
+                    [cell.txtInformation setTag:4];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Mobile Phone"];
+                    [cell.txtInformation setPlaceholder:@"xxx-xxx-xxx"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:4];
+                    
+                }
+                else if (section == 1){
+                    [cell.txtInformation setTag:8];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Starting Weight"];
+                    [cell.txtInformation setPlaceholder:@"lb."];
+                    cell.txtInformation.text = [modelArray objectAtIndex:8];
+                    
+                }
             }
             return cell;
             break;
+            
+        case 4:
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+                if (section == 0) {
+                    break;
+                }
+                else if (section == 1){
+                    [cell.txtInformation setTag:9];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Date of Birth"];
+                    [cell.txtInformation setPlaceholder:@"mm/dd/yyyy"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:9];
+                    
+                }
+            }
+            return cell;
+            break;
+            
+        case 5:
+            if (cell == nil) {
+                NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
+                cell = [nib objectAtIndex:0];
+                if (section == 0) {
+                    break;
+                }
+                else if (section == 1){
+                    [cell.txtInformation setTag:10];
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+                    [cell.lblDescription setText:@"Gender"];
+                    [cell.txtInformation setPlaceholder:@"female/male"];
+                    cell.txtInformation.text = [modelArray objectAtIndex:10];
+                    
+                }
+            }
+            return cell;
+            break;
+
             
         default:
             break;
     }
     return cell;
-    
+        
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

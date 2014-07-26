@@ -13,11 +13,20 @@
 
 - (void)awakeFromNib
 {
+    [self.txtInformation setDelegate:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [self.txtInformation resignFirstResponder];
+    //[self.delegate resetTablePosition];
+    return YES;
+    
 }
 
 @end

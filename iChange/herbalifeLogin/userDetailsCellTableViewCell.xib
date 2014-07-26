@@ -13,31 +13,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="61"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bulb.png" translatesAutoresizingMaskIntoConstraints="NO" id="aES-XU-Isz">
-                        <rect key="frame" x="13" y="19" width="24" height="24"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Starting Weight" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="86" translatesAutoresizingMaskIntoConstraints="NO" id="BMG-Cq-b7s">
-                        <rect key="frame" x="50" y="7" width="86" height="48"/>
+                        <rect key="frame" x="13" y="7" width="86" height="48"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                        <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                         <color key="textColor" white="0.54700100806451613" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WiM-73-szp">
-                        <rect key="frame" x="139" y="11" width="174" height="40"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="type your info here" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="guV-tq-Bv6">
+                        <rect key="frame" x="139" y="16" width="161" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </view>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="imgCell" destination="aES-XU-Isz" id="Ga0-j2-EhL"/>
                 <outlet property="lblDescription" destination="BMG-Cq-b7s" id="wBr-24-1dk"/>
-                <outlet property="viewContainer" destination="WiM-73-szp" id="96O-1n-lqy"/>
+                <outlet property="txtInformation" destination="guV-tq-Bv6" id="tiT-wJ-ZIe"/>
             </connections>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="bulb.png" width="128" height="128"/>
-    </resources>
 </document>

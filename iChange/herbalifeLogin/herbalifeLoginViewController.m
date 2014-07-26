@@ -8,7 +8,7 @@
 
 #import "herbalifeLoginViewController.h"
 #import "SBJsonWriter.h"
-#import "UserInfoViewController.h"
+#import "userDetailsViewController.h"
 
 @interface herbalifeLoginViewController (){
     NSString *theToken;
@@ -117,15 +117,28 @@
     
     UINavigationBar *navBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, 320, 55)];
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    NSDictionary *attributesTitle = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:20], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor grayColor], NSForegroundColorAttributeName, nil];
+    NSDictionary *attributesTitle = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Futura-medium" size:18], NSFontAttributeName, [UIColor grayColor], NSForegroundColorAttributeName, nil];
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
+    //UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     
-    backButton.tintColor = [UIColor whiteColor];
-    [backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    //backButton.tintColor = [UIColor whiteColor];
+    //[backButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setBackgroundImage:[UIImage imageNamed:@"backArrow.png"] forState:UIControlStateNormal];
+    button.frame=CGRectMake(0,0, 29, 29);
+    [button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:attributes];
     
     UINavigationItem *itemNext = [[UINavigationItem alloc]initWithTitle:@"Sign Up"];
+    
     itemNext.leftBarButtonItem = backButton;
     navBar.items = [NSArray arrayWithObject:itemNext];
     [navBar setTitleTextAttributes:attributesTitle];
@@ -243,10 +256,19 @@
             //Store user token
             //NSString *token = [[JSONObject objectForKey:@"data"] valueForKey:@"token"];
             //Show the next view 'UserInfo'
+            
+            userDetailsViewController *userDetails = [[userDetailsViewController alloc]initWithNibName:@"userDetailsViewController" bundle:nil];
+            userDetails.TOKEN_TMP_ = [[JSONObject objectForKey:@"data"]valueForKey:@"token"];
+            UINavigationController *navController = [[UINavigationController alloc]initWithRootViewController:userDetails];
+            [self presentViewController:navController animated:YES completion:nil];
+            
+            /*
             UserInfoViewController *userInfo = [[UserInfoViewController alloc] initWithNibName:nil bundle:nil];
             userInfo.TOKEN_TMP = [[JSONObject objectForKey:@"data"]valueForKey:@"token"];
             userInfo.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             [self presentViewController:userInfo animated:YES completion:nil];
+            */
+            
         }
     }
     else{
