@@ -272,7 +272,8 @@
         }
     }
     else{
-        NSLog(@"Error");
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
     }
     
 }
