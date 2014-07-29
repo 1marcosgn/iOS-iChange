@@ -230,7 +230,8 @@
         }
     }
     else{
-        NSLog(@"Error");
+        UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertStatus show];
     }
     
 }

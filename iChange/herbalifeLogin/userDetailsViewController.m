@@ -202,6 +202,8 @@
         }
     }
     else{
+        UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alertStatus show];
     }
     
 }
@@ -352,7 +354,7 @@
                     [cell.lblDescription setText:@"Username"];
                     [cell.txtInformation setPlaceholder:@"Type your username"];
                     cell.txtInformation.text = [modelArray objectAtIndex:0];
-                    
+                    cell.delegate = self;
                 }
                 else if (section == 1){
                     [cell.txtInformation setTag:5];
@@ -554,12 +556,22 @@
     
 }
 
+-(void)changeTablePosition{
+    
+    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    CGPoint point = self.tableUserDetails.contentOffset;
+    //point .y += self.tableUserDetails.rowHeight + position;
+    point .y += self.tableUserDetails.rowHeight + 13;
+    self.tableUserDetails.contentOffset = point;
+    
+}
 
 -(void)changeTablePosition:(int)position{
     
     [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
     CGPoint point = self.tableUserDetails.contentOffset;
-    point .y += self.tableUserDetails.rowHeight + position;
+    //point .y += self.tableUserDetails.rowHeight + position;
+    point .y += self.tableUserDetails.rowHeight + 13;
     self.tableUserDetails.contentOffset = point;
     
 }

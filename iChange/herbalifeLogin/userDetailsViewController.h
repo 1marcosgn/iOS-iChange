@@ -11,7 +11,7 @@
 #import "ConnectionViewController.h"
 #import "SBJsonWriter.h"
 
-@interface userDetailsViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ConnectionDelegate>{
+@interface userDetailsViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ConnectionDelegate, CellDelegate_Detail>{
 
     NSMutableDictionary *dictionaryInformation;
     NSString *TOKEN_TMP_;
