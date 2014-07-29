@@ -11,6 +11,8 @@
 
 @implementation userDetailsCellTableViewCell
 
+@synthesize delegate;
+
 - (void)awakeFromNib
 {
     [self.txtInformation setDelegate:self];
@@ -21,10 +23,23 @@
     [super setSelected:selected animated:animated];
 }
 
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    NSInteger tag = textField.tag;
+    
+    NSString *integer = [NSString stringWithFormat:@"%ld", tag];
+    
+    int tagInt = [integer intValue];
+    
+    //[self.delegate changeTablePosition];
+    [self.delegate changeTablePosition:tagInt];
+    
+}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     
     [self.txtInformation resignFirstResponder];
-    //[self.delegate resetTablePosition];
+    [self.delegate resetTablePosition];
     return YES;
     
 }

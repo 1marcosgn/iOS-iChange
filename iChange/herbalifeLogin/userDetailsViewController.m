@@ -44,7 +44,7 @@
     
     modelArray = [[NSMutableArray alloc]init];
     
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 10; i++) {
         [modelArray addObject:@""];
     }
     
@@ -118,24 +118,48 @@
     
 }
 
+-(BOOL)validateFields{
+    BOOL infoIsComplete = YES;
+    if ([modelArray count] == 10) {
+        for (int i = 0; i<[modelArray count]; i++) {
+            if ([[modelArray objectAtIndex:i] isEqualToString:@""]) {
+                infoIsComplete = NO;
+            }
+        }
+    }
+    return infoIsComplete;
+}
+
 -(void)done{
     //Check if all the fields are complete..
-    if ([dictionaryGlobal count] == 4) {
+    if ([self validateFields]) {
         [self createAccount];
     }
     else{
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please complete all the information before continue" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-        
-        NSLog(@"the model is: %@", modelArray);
     }
 }
 
 -(void)createAccount{
     
+    //NSLog(@"Info model is: %@", modelArray);
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableArray *keys = [[NSMutableArray alloc]init];
     
+    [keys addObject:@"username"];
+    [keys addObject:@"password"];
+    [keys addObject:@"retypepassword"];
+    [keys addObject:@"mobile_phone"];
+    [keys addObject:@"first_name"];
+    [keys addObject:@"last_name"];
+    [keys addObject:@"height"];
+    [keys addObject:@"weight"];
+    [keys addObject:@"birthdate"];
+    [keys addObject:@"gender"];
+    
+    /*
     [keys addObject:@"mobile_phone"];
     [keys addObject:@"username"];
     [keys addObject:@"password"];
@@ -143,30 +167,43 @@
     [keys addObject:@"units_of_measure"];
     [keys addObject:@"height"];
     [keys addObject:@"weight"];
-    [keys addObject:@"gender"];
     
+    */
+    
+    for (int i = 0; i < [modelArray count]; i++) {
+        [parameters setObject:[modelArray objectAtIndex:i] forKey:[keys objectAtIndex:i]];
+    }
+    
+    /*
     for (int i = 0; i < [dictionaryInformation count]; i++) {
         NSString *key = [NSString stringWithFormat:@"%d", i];
         [parameters setObject:[dictionaryInformation valueForKey:key] forKey:[keys objectAtIndex:i]];
     }
+     */
 
+    /*
     for (int i = 0; i < [dictionaryGlobal count]; i++) {
         [parameters setObject:[dictionaryGlobal valueForKey:[NSString stringWithFormat:@"%d", i+4]] forKey:[keys objectAtIndex:i+4]];
     }
+     */
     
     //missing info..
-    [parameters setObject:@"UserTestName" forKey:@"first_name"];
-    [parameters setObject:@"UserTestLastName" forKey:@"last_name"];
     [parameters setObject:@"" forKey:@"email"];
-    [parameters setObject:@"" forKey:@"image_path"];
-    [parameters setObject:@"" forKey:@"image_content_type"];
-    [parameters setObject:@"" forKey:@"size"];
-    [parameters setObject:@"1970-01-22T16:36:59Z" forKey:@"birthdate"];
+    //[parameters setObject:@"" forKey:@"image_path"];
+    //[parameters setObject:@"" forKey:@"image_content_type"];
+    //[parameters setObject:@"" forKey:@"size"];
+    //[parameters setObject:@"1970-01-22T16:36:59Z" forKey:@"birthdate"];
     [parameters setObject:@"USA" forKey:@"country"];
     [parameters setObject:@"" forKey:@"timezone"];
     [parameters setObject:@"" forKey:@"zipcode"];
     [parameters setObject:@"" forKey:@"age"];
     [parameters removeObjectForKey:@"retypepassword"];
+    [parameters setObject:@"" forKey:@"units_of_measure"];
+    [parameters setObject:@"" forKey:@"picture"];
+    
+    //NSMutableArray *arrThumbnails = [[NSMutableArray alloc]initWithObjects:@"72x72", @"100x100", nil];
+    
+    [parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
     
     ConnectionViewController *connection = [[ConnectionViewController alloc]init];
     [connection setDelegate:self];
@@ -322,13 +359,19 @@
 
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     
+    [self storeModelInfo];
+    
+}
+
+-(void)storeModelInfo{
+    
     NSArray *cells = [self.tableUserDetails visibleCells];
     
     for (userDetailsCellTableViewCell *element in cells) {
         NSString *tagText = [NSString stringWithFormat:@"%ld", (long)element.txtInformation.tag];
         [modelArray replaceObjectAtIndex:[tagText intValue] withObject:element.txtInformation.text];
     }
-    
+    //NSLog(@"%@", modelArray);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -352,13 +395,15 @@
                     [cell.lblDescription setText:@"Username"];
                     [cell.txtInformation setPlaceholder:@"Type your username"];
                     cell.txtInformation.text = [modelArray objectAtIndex:0];
+                    cell.delegate = self;
                     
                 }
                 else if (section == 1){
-                    [cell.txtInformation setTag:5];
+                    [cell.txtInformation setTag:4];
                     [cell.lblDescription setText:@"First Name"];
                     [cell.txtInformation setPlaceholder:@"Type your name"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:5];
+                    cell.txtInformation.text = [modelArray objectAtIndex:4];
+                    cell.delegate = self;
                     
                 }
                 
@@ -378,14 +423,16 @@
                     [cell.lblDescription setText:@"Password"];
                     [cell.txtInformation setPlaceholder:@"Type your password"];
                     cell.txtInformation.text = [modelArray objectAtIndex:1];
+                    cell.delegate = self;
                     
                 }
                 else if(section == 1){
-                    [cell.txtInformation setTag:6];
+                    [cell.txtInformation setTag:5];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Last Name"];
                     [cell.txtInformation setPlaceholder:@"Type your last name"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:6];
+                    cell.txtInformation.text = [modelArray objectAtIndex:5];
+                    cell.delegate = self;
                     
                 }
                 
@@ -403,14 +450,16 @@
                     [cell.lblDescription setText:@"Confirm Password"];
                     [cell.txtInformation setPlaceholder:@"re-type your password"];
                     cell.txtInformation.text = [modelArray objectAtIndex:2];
+                    cell.delegate = self;
                     
                 }
                 else if (section == 1){
-                    [cell.txtInformation setTag:7];
+                    [cell.txtInformation setTag:6];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Height"];
                     [cell.txtInformation setPlaceholder:@"ft. in."];
-                    cell.txtInformation.text = [modelArray objectAtIndex:7];
+                    cell.txtInformation.text = [modelArray objectAtIndex:6];
+                    cell.delegate = self;
                     
                 }
                 
@@ -423,19 +472,21 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
                 if (section == 0) {
-                    [cell.txtInformation setTag:4];
+                    [cell.txtInformation setTag:3];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Mobile Phone"];
                     [cell.txtInformation setPlaceholder:@"xxx-xxx-xxx"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:4];
+                    cell.txtInformation.text = [modelArray objectAtIndex:3];
+                    cell.delegate = self;
                     
                 }
                 else if (section == 1){
-                    [cell.txtInformation setTag:8];
+                    [cell.txtInformation setTag:7];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Starting Weight"];
                     [cell.txtInformation setPlaceholder:@"lb."];
-                    cell.txtInformation.text = [modelArray objectAtIndex:8];
+                    cell.txtInformation.text = [modelArray objectAtIndex:7];
+                    cell.delegate = self;
                     
                 }
             }
@@ -450,11 +501,12 @@
                     break;
                 }
                 else if (section == 1){
-                    [cell.txtInformation setTag:9];
+                    [cell.txtInformation setTag:8];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Date of Birth"];
                     [cell.txtInformation setPlaceholder:@"mm/dd/yyyy"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:9];
+                    cell.txtInformation.text = [modelArray objectAtIndex:8];
+                    cell.delegate = self;
                     
                 }
             }
@@ -469,11 +521,12 @@
                     break;
                 }
                 else if (section == 1){
-                    [cell.txtInformation setTag:10];
+                    [cell.txtInformation setTag:9];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Gender"];
                     [cell.txtInformation setPlaceholder:@"female/male"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:10];
+                    cell.txtInformation.text = [modelArray objectAtIndex:9];
+                    cell.delegate = self;
                     
                 }
             }
@@ -554,14 +607,21 @@
     
 }
 
-
--(void)changeTablePosition:(int)position{
+-(void)changeTablePosition:(int)tag{
+    int section;
+    int index;
+    if (tag <= 3) {
+        section = 0;
+        index = tag;
+    }
+    else{
+        section = 1;
+        index = tag - 4;
+    }
+    self.tableUserDetails.contentInset = UIEdgeInsetsMake(0, 0, 232, 0);
+    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
-    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    CGPoint point = self.tableUserDetails.contentOffset;
-    point .y += self.tableUserDetails.rowHeight + position;
-    self.tableUserDetails.contentOffset = point;
-    
+    [self storeModelInfo];
 }
 
 -(void)resetTablePosition{
@@ -570,6 +630,8 @@
     CGPoint point = self.tableUserDetails.contentOffset;
     point .y -= self.tableUserDetails.rowHeight - 40;
     self.tableUserDetails.contentOffset = point;
+    
+    [self storeModelInfo];
     
 }
 
