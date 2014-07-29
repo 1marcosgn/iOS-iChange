@@ -398,6 +398,7 @@
                     [cell.txtInformation setPlaceholder:@"Type your username"];
                     cell.txtInformation.text = [modelArray objectAtIndex:0];
                     cell.delegate = self;
+                    
                 }
                 else if (section == 1){
                     [cell.txtInformation setTag:4];
@@ -608,23 +609,19 @@
     
 }
 
--(void)changeTablePosition{
-    
-    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    CGPoint point = self.tableUserDetails.contentOffset;
-    //point .y += self.tableUserDetails.rowHeight + position;
-    point .y += self.tableUserDetails.rowHeight + 13;
-    self.tableUserDetails.contentOffset = point;
-    
-}
-
--(void)changeTablePosition:(int)position{
-    
-    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-    CGPoint point = self.tableUserDetails.contentOffset;
-    //point .y += self.tableUserDetails.rowHeight + position;
-    point .y += self.tableUserDetails.rowHeight + 13;
-    self.tableUserDetails.contentOffset = point;
+-(void)changeTablePosition:(int)tag{
+    int section;
+    int index;
+    if (tag <= 3) {
+        section = 0;
+        index = tag;
+    }
+    else{
+        section = 1;
+        index = tag - 4;
+    }
+    self.tableUserDetails.contentInset = UIEdgeInsetsMake(0, 0, 232, 0);
+    [self.tableUserDetails scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:section] atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
     [self storeModelInfo];
 }

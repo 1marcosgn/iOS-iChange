@@ -11,7 +11,7 @@
 //Protocol for the position of tableview
 @protocol CellDelegate_Detail <NSObject>
 
--(void)changeTablePosition;
+-(void)changeTablePosition:(int)tag;
 -(void)resetTablePosition;
 
 @end

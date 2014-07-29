@@ -25,7 +25,13 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
-    [self.delegate changeTablePosition];
+    NSInteger tag = textField.tag;
+    
+    NSString *integer = [NSString stringWithFormat:@"%ld", tag];
+    
+    int tagInt = [integer intValue];
+    
+    [self.delegate changeTablePosition:tagInt];
     
 }
 
