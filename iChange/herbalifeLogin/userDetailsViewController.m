@@ -144,7 +144,6 @@
 -(void)createAccount{
     
     //NSLog(@"Info model is: %@", modelArray);
-    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableArray *keys = [[NSMutableArray alloc]init];
     
@@ -159,40 +158,12 @@
     [keys addObject:@"birthdate"];
     [keys addObject:@"gender"];
     
-    /*
-    [keys addObject:@"mobile_phone"];
-    [keys addObject:@"username"];
-    [keys addObject:@"password"];
-    [keys addObject:@"retypepassword"];
-    [keys addObject:@"units_of_measure"];
-    [keys addObject:@"height"];
-    [keys addObject:@"weight"];
-    
-    */
-    
     for (int i = 0; i < [modelArray count]; i++) {
         [parameters setObject:[modelArray objectAtIndex:i] forKey:[keys objectAtIndex:i]];
     }
     
-    /*
-    for (int i = 0; i < [dictionaryInformation count]; i++) {
-        NSString *key = [NSString stringWithFormat:@"%d", i];
-        [parameters setObject:[dictionaryInformation valueForKey:key] forKey:[keys objectAtIndex:i]];
-    }
-     */
-
-    /*
-    for (int i = 0; i < [dictionaryGlobal count]; i++) {
-        [parameters setObject:[dictionaryGlobal valueForKey:[NSString stringWithFormat:@"%d", i+4]] forKey:[keys objectAtIndex:i+4]];
-    }
-     */
-    
     //missing info..
     [parameters setObject:@"" forKey:@"email"];
-    //[parameters setObject:@"" forKey:@"image_path"];
-    //[parameters setObject:@"" forKey:@"image_content_type"];
-    //[parameters setObject:@"" forKey:@"size"];
-    //[parameters setObject:@"1970-01-22T16:36:59Z" forKey:@"birthdate"];
     [parameters setObject:@"USA" forKey:@"country"];
     [parameters setObject:@"" forKey:@"timezone"];
     [parameters setObject:@"" forKey:@"zipcode"];
@@ -200,9 +171,6 @@
     [parameters removeObjectForKey:@"retypepassword"];
     [parameters setObject:@"" forKey:@"units_of_measure"];
     [parameters setObject:@"" forKey:@"picture"];
-    
-    //NSMutableArray *arrThumbnails = [[NSMutableArray alloc]initWithObjects:@"72x72", @"100x100", nil];
-    
     [parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
     
     ConnectionViewController *connection = [[ConnectionViewController alloc]init];
