@@ -576,7 +576,7 @@
     [self resetTablePosition];
     
 }
-
+//add this code
 -(void)changeTablePosition:(int)tag{
     int section;
     int index;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//Protocol for the position of tableview
+//Protocol for the position of tableview - add this code
 @protocol CellDelegate_Detail <NSObject>
 
 -(void)changeTablePosition:(int)tag;

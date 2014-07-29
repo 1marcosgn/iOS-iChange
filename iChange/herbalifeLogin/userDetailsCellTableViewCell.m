@@ -22,7 +22,7 @@
 {
     [super setSelected:selected animated:animated];
 }
-
+//add this code
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
     
     NSInteger tag = textField.tag;
