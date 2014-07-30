@@ -63,7 +63,7 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
         [urlRequest setHTTPBody:jsonData];
     }
     else if ([type isEqualToString:@"GET"]){
-        //Stuff to send a 'GET' webservice
+        //Stuff to send a 'GET' webservice here
     }
     else{
         //Other cases here... (maybe logout??)
