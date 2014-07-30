@@ -43,11 +43,6 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
     
 }
 
-#warning pending for tomorrow..
--(void)getKeyandValuesfromHeader:(NSMutableDictionary *)headerDictionary{
-    
-}
-
 #pragma mark - Connection Methods
 -(void)executeService:(NSString *)nameWebService withData:(NSData *)jsonData type:(NSString *)type headers:(NSMutableDictionary *)headers{
     
@@ -59,13 +54,11 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
         
         [urlRequest setHTTPMethod:type];
         [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
-#warning get the header keys here - finish tomorrow...
+//Get all the keys and values of the header and send it as a parameter for the HTTP header
         if (headers != nil) {
-            //[self getKeyandValuesfromHeader:headers];
-            //[urlRequest setValue:[headers allKeys] forHTTPHeaderField:[headers allValues]];
-            NSString *token = [headers valueForKey:@"X_USER_TOKEN"];
-            [urlRequest setValue:token forHTTPHeaderField:@"X_USER_TOKEN"];
+            for (id element in headers) {
+                [urlRequest setValue:element forHTTPHeaderField:[headers valueForKey:element]];
+            }
         }
         [urlRequest setHTTPBody:jsonData];
     }

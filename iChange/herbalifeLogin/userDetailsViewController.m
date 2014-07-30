@@ -171,7 +171,8 @@
     [parameters removeObjectForKey:@"retypepassword"];
     [parameters setObject:@"" forKey:@"units_of_measure"];
     [parameters setObject:@"" forKey:@"picture"];
-    [parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
+    //[parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
+    //[parameters setObject:@"" forKey:@"thumbnails"];
     
     ConnectionViewController *connection = [[ConnectionViewController alloc]init];
     [connection setDelegate:self];
@@ -184,8 +185,12 @@
     [paramsFinal setObject:parameters forKey:@"data"];
     NSString *prevString = [JSONWriter stringWithObject:paramsFinal];
     NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSMutableDictionary *headersDictionary = [NSMutableDictionary dictionary];
-    [headersDictionary setObject:TOKEN_TMP_ forKey:@"X_USER_TOKEN"];
+    [headersDictionary setObject:TOKEN_TMP_ forKey:@"X-USER-TOKEN"];
+    [headersDictionary setObject:@"one_Object" forKey:@"one_Key"];
+    [headersDictionary setObject:@"another_Object" forKey:@"another_Key"];
+    
     [connection executeService:@"users" withData:jsonData type:@"POST" headers:headersDictionary];
     
 }
@@ -202,8 +207,8 @@
             [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         }
         else{
-#warning find the message for the webservice error...
-            NSLog(@"Error...");
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
         }
     }
     else{
