@@ -232,6 +232,10 @@
                 [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
             }
         }
+        else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
     }
     else{
 #warning find the message for the webservice error...

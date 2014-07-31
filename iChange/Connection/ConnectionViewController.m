@@ -55,12 +55,14 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
         [urlRequest setHTTPMethod:type];
         [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //Get all the keys and values of the header and send it as a parameter for the HTTP header
-        if (headers != nil) {
-            //[self getKeyandValuesfromHeader:headers];
-            //[urlRequest setValue:[headers allKeys] forHTTPHeaderField:[headers allValues]];
-            NSString *token = [headers valueForKey:@"X-USER-TOKEN"];
-            [urlRequest setValue:token forHTTPHeaderField:@"X-USER-TOKEN"];
-        }
+        NSString *token = [headers valueForKey:@"X-USER-TOKEN"];
+        [urlRequest setValue:token forHTTPHeaderField:@"X-USER-TOKEN"];
+        //somehow this doesn't work
+        /*if (headers != nil) {
+            for (id element in headers) {
+                [urlRequest setValue:element forHTTPHeaderField:[headers valueForKey:element]];
+            }
+        }*/
         [urlRequest setHTTPBody:jsonData];
     }
     else if ([type isEqualToString:@"GET"]){
