@@ -7,6 +7,7 @@
 //
 
 #import "userDetailsViewController.h"
+#import "iChangeViewController.h"
 
 @interface userDetailsViewController (){
     
@@ -17,6 +18,7 @@
     NSMutableArray *modelArray;
 }
 
+@property ConnectionViewController *connection;
 @end
 
 @implementation userDetailsViewController
@@ -142,7 +144,7 @@
 }
 
 -(void)createAccount{
-    
+  
     //NSLog(@"Info model is: %@", modelArray);
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     NSMutableArray *keys = [[NSMutableArray alloc]init];
@@ -172,11 +174,16 @@
     [parameters setObject:@"" forKey:@"units_of_measure"];
     [parameters setObject:@"" forKey:@"picture"];
     [parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
-    
-    ConnectionViewController *connection = [[ConnectionViewController alloc]init];
-    [connection setDelegate:self];
-    [self.view insertSubview:connection.view atIndex:[[self.view subviews]count]];
-    [connection start];
+  
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:[modelArray objectAtIndex:0] forKey:@"username"];
+    [userDefaults setObject:[modelArray objectAtIndex:1] forKey:@"password"];
+  
+  
+    self.connection = [[ConnectionViewController alloc]init];
+    [self.connection setDelegate:self];
+    [self.view insertSubview:self.connection.view atIndex:[[self.view subviews]count]];
+    [self.connection start];
     
     NSMutableDictionary *paramsFinal = [NSMutableDictionary dictionary];
     SBJsonWriter *JSONWriter = [SBJsonWriter alloc];
@@ -185,33 +192,73 @@
     NSString *prevString = [JSONWriter stringWithObject:paramsFinal];
     NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
     NSMutableDictionary *headersDictionary = [NSMutableDictionary dictionary];
-    [headersDictionary setObject:TOKEN_TMP_ forKey:@"X_USER_TOKEN"];
-    [connection executeService:@"users" withData:jsonData type:@"POST" headers:headersDictionary];
+    [headersDictionary setObject:TOKEN_TMP_ forKey:@"X-USER-TOKEN"];
+    [self.connection executeService:@"users" withData:jsonData type:@"POST" headers:headersDictionary];
     
 }
 
 -(void)connectionFinish:(NSDictionary *)JSONObject succes:(BOOL)success serviceName:(NSString *)name{
-    
     if (success) {
         NSString *status = [[JSONObject valueForKey:@"status"] stringValue];
-        
-        if ([status isEqualToString:@"201"]) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"The user account was created successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-        }
-        else{
-#warning find the message for the webservice error...
-            NSLog(@"Error...");
+        if ([name isEqualToString:@"users"]) {
+            if ([status isEqualToString:@"201"]) {
+                
+                [self login];
+            } else if ([status isEqualToString:@"422"]) {
+                //error;
+            } else {
+                /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"The user account was created successfully" delegate:self cancelButtonTitle:@"Ok" otherButto>
+                 [alert show];
+                 [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+                 */
+            }
+        } else if ([name isEqualToString:@"login"]) {
+            NSLog(@"%@: ---- %@", name, JSONObject);
+            NSString *status = [[JSONObject valueForKey:@"status"] stringValue];
+            if ([status isEqualToString:@"200"]) {
+#warning Store user token and present next modal elements in the storyboard...
+                //Store user token
+                //NSString *token = [[JSONObject objectForKey:@"data"] valueForKey:@"token"];
+                NSLog(@"Welcome...");
+                //loginSuccess = YES;
+                
+                UIStoryboard * mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                iChangeViewController * iChangeVC = (iChangeViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+                [self presentViewController:iChangeVC animated:YES completion:nil];
+            } else if ([status isEqualToString:@"500"]) {
+                UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Login" message:[JSONObject valueForKey:@"error"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alertStatus show];
+                [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+            }
         }
     }
     else{
-        UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alertStatus show];
+#warning find the message for the webservice error...
+        NSLog(@"Error...");
     }
+}
+
+
+- (void)login
+{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    NSMutableDictionary *paramFinal = [NSMutableDictionary dictionary];
+    
+    //'SBJsonWriter' allows to create the correct format for the payload request
+    SBJsonWriter *JSONWriter = [SBJsonWriter alloc];
+    
+    [params setValue:[modelArray objectAtIndex:0] forKeyPath:@"username"];
+    [params setValue:[modelArray objectAtIndex:1] forKeyPath:@"password"];
+    [paramFinal setObject:params forKey:@"data"];
+    
+    NSString *prevString = [JSONWriter stringWithObject:paramFinal];
+    NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    //Method to consume a certain web service (you will have to send the headers as paraneters only if it's required
+    [self.connection executeService:@"login" withData:jsonData type:@"POST" headers:nil];
     
 }
+
 
 - (void)didReceiveMemoryWarning
 {

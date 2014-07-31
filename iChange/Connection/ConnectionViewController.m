@@ -64,8 +64,8 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
         if (headers != nil) {
             //[self getKeyandValuesfromHeader:headers];
             //[urlRequest setValue:[headers allKeys] forHTTPHeaderField:[headers allValues]];
-            NSString *token = [headers valueForKey:@"X_USER_TOKEN"];
-            [urlRequest setValue:token forHTTPHeaderField:@"X_USER_TOKEN"];
+            NSString *token = [headers valueForKey:@"X-USER-TOKEN"];
+            [urlRequest setValue:token forHTTPHeaderField:@"X-USER-TOKEN"];
         }
         [urlRequest setHTTPBody:jsonData];
     }
