@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnHerbalifeTerms;
 
 - (IBAction)signUp:(id)sender;
-- (IBAction)logIn:(id)sender;
 - (IBAction)goHerbalifeTerms:(id)sender;
 
 @end

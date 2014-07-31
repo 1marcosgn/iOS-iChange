@@ -191,6 +191,7 @@
     [paramsFinal setObject:parameters forKey:@"data"];
     NSString *prevString = [JSONWriter stringWithObject:paramsFinal];
     NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
+    
     NSMutableDictionary *headersDictionary = [NSMutableDictionary dictionary];
     [headersDictionary setObject:TOKEN_TMP_ forKey:@"X-USER-TOKEN"];
     [self.connection executeService:@"users" withData:jsonData type:@"POST" headers:headersDictionary];
