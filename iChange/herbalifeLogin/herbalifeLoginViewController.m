@@ -13,6 +13,7 @@
 @interface herbalifeLoginViewController (){
     NSString *theToken;
 }
+@property ConnectionViewController *connection;
 @end
 
 @implementation herbalifeLoginViewController
@@ -42,10 +43,10 @@
         [self dismissKeyboard];
         
         //New 'ConnectionViewController' instance to manage the web service connections
-        ConnectionViewController *connection = [[ConnectionViewController alloc]init];
-        [connection setDelegate:self];
-        [self.view insertSubview:connection.view atIndex:[[self.view subviews]count]];
-        [connection start];
+        self.connection = [[ConnectionViewController alloc]init];
+        [self.connection setDelegate:self];
+        [self.view insertSubview:self.connection.view atIndex:[[self.view subviews]count]];
+        [self.connection start];
         
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         NSMutableDictionary *paramFinal = [NSMutableDictionary dictionary];
@@ -57,7 +58,7 @@
         
         NSString *prevString = [JSONWriter stringWithObject:paramFinal];
         NSData *jsonData = [prevString dataUsingEncoding:NSUTF8StringEncoding];
-        [connection executeService:@"hlf_login" withData:jsonData type:@"POST" headers:nil];
+        [self.connection executeService:@"hlf_login" withData:jsonData type:@"POST" headers:nil];
     }
     else{
         UIAlertView *alertLogin = [[UIAlertView alloc]initWithTitle:nil message:@"Please enter a Distributor ID and PIN to continue." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -248,8 +249,10 @@
         NSString *status = [[JSONObject valueForKey:@"status"] stringValue];
         
         if ([status isEqualToString:@"500"]) {
-            UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Login Herbalife" message:[JSONObject valueForKey:@"error"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alertStatus show];
+            [self.connection errorAlert:@"Herbalife" :@"Login error"];
+        }
+        else if ([status isEqualToString:@"401"]) {
+            [self.connection errorAlert:@"Herbalife" :[JSONObject valueForKey:@"error"]];
         }
         else if ([status isEqualToString:@"200"]){
 #warning Store user token
@@ -272,8 +275,7 @@
         }
     }
     else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
+        [self.connection errorAlert:@"Connection failure" :[JSONObject valueForKey:@"Try again."]];
     }
     
 }

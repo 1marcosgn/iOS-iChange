@@ -53,8 +53,6 @@
 		53BC55991970975A00C063DF /* herbalifeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC55971970975A00C063DF /* herbalifeLoginViewController.m */; };
 		53BC559A1970975A00C063DF /* herbalifeLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55981970975A00C063DF /* herbalifeLoginViewController.xib */; };
 		53BC55A119709A9300C063DF /* ichangeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC55A019709A9300C063DF /* ichangeLoginViewController.m */; };
-		53BC55A51970AA7400C063DF /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 53BC55A31970AA7400C063DF /* UserInfoViewController.m */; };
-		53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A41970AA7400C063DF /* UserInfoViewController.xib */; };
 		53BC55A819743D4600C063DF /* topImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A719743D4600C063DF /* topImage.png */; };
 		53BC55AA19743DF000C063DF /* ichange_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 53BC55A919743DF000C063DF /* ichange_banner.png */; };
 		53DB0CA31981B882006AA0E1 /* userAlone.png in Resources */ = {isa = PBXBuildFile; fileRef = 53DB0CA21981B882006AA0E1 /* userAlone.png */; };
@@ -160,9 +158,6 @@
 		53BC55981970975A00C063DF /* herbalifeLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = herbalifeLoginViewController.xib; sourceTree = "<group>"; };
 		53BC559F19709A9300C063DF /* ichangeLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ichangeLoginViewController.h; sourceTree = "<group>"; };
 		53BC55A019709A9300C063DF /* ichangeLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ichangeLoginViewController.m; sourceTree = "<group>"; };
-		53BC55A21970AA7400C063DF /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
-		53BC55A31970AA7400C063DF /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
-		53BC55A41970AA7400C063DF /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		53BC55A719743D4600C063DF /* topImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topImage.png; sourceTree = "<group>"; };
 		53BC55A919743DF000C063DF /* ichange_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ichange_banner.png; sourceTree = "<group>"; };
 		53DB0CA21981B882006AA0E1 /* userAlone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = userAlone.png; sourceTree = "<group>"; };
@@ -396,9 +391,6 @@
 				53BC55961970975A00C063DF /* herbalifeLoginViewController.h */,
 				53BC55971970975A00C063DF /* herbalifeLoginViewController.m */,
 				53BC55981970975A00C063DF /* herbalifeLoginViewController.xib */,
-				53BC55A21970AA7400C063DF /* UserInfoViewController.h */,
-				53BC55A31970AA7400C063DF /* UserInfoViewController.m */,
-				53BC55A41970AA7400C063DF /* UserInfoViewController.xib */,
 				537835551975B5E400ED043D /* userInfoTableViewCell.h */,
 				537835561975B5E400ED043D /* userInfoTableViewCell.m */,
 				537835571975B5E400ED043D /* userInfoTableViewCell.xib */,
@@ -544,7 +536,6 @@
 				5378355E1975BA3900ED043D /* userinfoPass.png in Resources */,
 				53F20BBC19809324000E028E /* friends.png in Resources */,
 				537836241977458500ED043D /* gender.png in Resources */,
-				53BC55A61970AA7400C063DF /* UserInfoViewController.xib in Resources */,
 				53F20BC519817549000E028E /* underConstruction.png in Resources */,
 				53DB0CA91981C166006AA0E1 /* backGreen.png in Resources */,
 				53F20BAA19807AB8000E028E /* homeMain.png in Resources */,
@@ -602,7 +593,6 @@
 				53BC5590197074D100C063DF /* SBJsonBase.m in Sources */,
 				5378362019770C8D00ED043D /* userDetailsCellTableViewCell.m in Sources */,
 				537835581975B5E400ED043D /* userInfoTableViewCell.m in Sources */,
-				53BC55A51970AA7400C063DF /* UserInfoViewController.m in Sources */,
 				53BC5592197074D100C063DF /* SBJsonWriter.m in Sources */,
 				530F7C21196F4BA400316D6E /* iChangeAppDelegate.m in Sources */,
 				53DB0CA71981BD50006AA0E1 /* initialiChangeViewController.m in Sources */,
