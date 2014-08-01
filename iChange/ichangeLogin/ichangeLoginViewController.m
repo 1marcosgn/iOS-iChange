@@ -242,6 +242,7 @@
             BOOL storeToken = [SSKeychain setPassword:[[JSONObject objectForKey:@"data"] valueForKey:@"token"] forService:@"iChangeUserToken" account:@"iChange"];
 
             if (storeUsername == YES && storePassword == YES && storeToken == YES) {
+                //TODO: create timestamp for the token (24hrs)
                 //iChangeAppDelegate *mainDelegate = (iChangeAppDelegate *)[[UIApplication sharedApplication]delegate];
                 //mainDelegate.timeStamp = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(newToken) userInfo:nil repeats:YES];
                 
