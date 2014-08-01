@@ -105,6 +105,16 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
     
 }
 
+- (void) errorAlert:(NSString *)title :(NSString *)message
+{
+    UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:title
+                                                         message:message
+                                                        delegate:self
+                                               cancelButtonTitle:@"Ok"
+                                               otherButtonTitles:nil, nil];
+    [alertStatus show];
+}
+
 #pragma mark - Connection Delegates
 -(void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
     
@@ -122,9 +132,8 @@ static NSString *SERVICES_ADDRESS = @"http://staging-api.ichange.com";
     
     [self finish];
     [delegate connectionFinish:nil succes:NO serviceName:webServiceName];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Connection fail" message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alert show];
-    
+    [self errorAlert:@"Connection failure" :@"Please try again."];
+
 }
 
 -(void)connectionDidFinishLoading:(NSURLConnection *)connection{

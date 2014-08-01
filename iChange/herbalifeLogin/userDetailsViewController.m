@@ -203,15 +203,12 @@
         NSString *status = [[JSONObject valueForKey:@"status"] stringValue];
         if ([name isEqualToString:@"users"]) {
             if ([status isEqualToString:@"201"]) {
-                
                 [self login];
             } else if ([status isEqualToString:@"422"]) {
-                //error;
+#warning Fix the error message
+                [self.connection errorAlert:@"Account creation" :[JSONObject valueForKey:@"error"]];
             } else {
-                /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Success" message:@"The user account was created successfully" delegate:self cancelButtonTitle:@"Ok" otherButto>
-                 [alert show];
-                 [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
-                 */
+                [self.connection errorAlert:@"Account creation" :[JSONObject valueForKey:@"error"]];
             }
         } else if ([name isEqualToString:@"login"]) {
             NSLog(@"%@: ---- %@", name, JSONObject);
@@ -220,21 +217,17 @@
 #warning Store user token and present next modal elements in the storyboard...
                 //Store user token
                 //NSString *token = [[JSONObject objectForKey:@"data"] valueForKey:@"token"];
-                NSLog(@"Welcome...");
-                //loginSuccess = YES;
-                
+
                 UIStoryboard * mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
                 iChangeViewController * iChangeVC = (iChangeViewController *)[mainStoryboard instantiateViewControllerWithIdentifier:@"tabBarController"];
                 [self presentViewController:iChangeVC animated:YES completion:nil];
             } else if ([status isEqualToString:@"500"]) {
-                UIAlertView *alertStatus = [[UIAlertView alloc]initWithTitle:@"Login" message:[JSONObject valueForKey:@"error"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alertStatus show];
-                [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+                [self.connection errorAlert:@"Login" :[JSONObject valueForKey:@"error"]];
             }
         }
         else{
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"Try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+            [self.connection errorAlert:@"Invalid action" :@"Please login."];
+            [self.view.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
         }
     }
     else{
@@ -242,7 +235,6 @@
         NSLog(@"Error...");
     }
 }
-
 
 - (void)login
 {

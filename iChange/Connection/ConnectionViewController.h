@@ -31,5 +31,6 @@
 -(void)start;
 -(void)finish;
 -(void)setPositionFromFrame:(CGRect)frame;
+-(void)errorAlert:(NSString *)title :(NSString *)message;
 
 @end
