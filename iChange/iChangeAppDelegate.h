@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface iChangeAppDelegate : UIResponder <UIApplicationDelegate>
+@interface iChangeAppDelegate : UIResponder <UIApplicationDelegate>{
+    
+    NSTimer *timeStamp;
+    
+}
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, retain) NSTimer *timeStamp;
 
 @end

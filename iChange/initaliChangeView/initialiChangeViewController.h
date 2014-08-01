@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ConnectionViewController.h"
 
-@interface initialiChangeViewController : UIViewController
+@interface initialiChangeViewController : UIViewController <ConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *lblCreateiChange;
 @property (weak, nonatomic) IBOutlet UIButton *btnSignup;

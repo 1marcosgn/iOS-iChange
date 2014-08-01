@@ -14,6 +14,8 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *revealButton;
 
+- (IBAction)getToken:(id)sender;
+- (IBAction)clearKeyChain:(id)sender;
 
 
 @end

@@ -10,6 +10,10 @@
 #import "SBJsonWriter.h"
 #import "herbalifeLoginViewController.h"
 #import "iChangeViewController.h"
+#import "SSKeychain.h"
+#import "iChangeAppDelegate.h"
+#import "RNCryptor.h"
+#import "RNEncryptor.h"
 
 @interface ichangeLoginViewController (){
     BOOL loginSuccess;
@@ -219,14 +223,34 @@
         }
         else if ([status isEqualToString:@"200"]){
             
-#warning Store user token and present next modal elements in the storyboard...
-            //Store user token
-            //NSString *token = [[JSONObject objectForKey:@"data"] valueForKey:@"token"];
-            NSLog(@"Welcome...");
-            loginSuccess = YES;
-            //[self shouldPerformSegueWithIdentifier:nil sender:nil];
-            [self performSegueWithIdentifier:@"login_success" sender:nil];
+            //Encrypt info before store in keychain
+            /*NSData *encryptUser = [RNEncryptor encryptData:[self.txtUsername.text dataUsingEncoding:NSUTF8StringEncoding] withSettings:kRNCryptorAES256Settings password:@"ichange" error:nil];
+            NSData *encryptPassword = [RNEncryptor encryptData:[self.txtPassword.text dataUsingEncoding:NSUTF8StringEncoding] withSettings:kRNCryptorAES256Settings password:@"ichange" error:nil];
+            NSData *encryptToken = [RNEncryptor encryptData:[[[JSONObject objectForKey:@"data"] valueForKey:@"token"] dataUsingEncoding:NSUTF8StringEncoding] withSettings:kRNCryptorAES256Settings password:@"ichange" error:nil];
             
+            NSString *strUser = [[NSString alloc] initWithData:encryptUser encoding:NSASCIIStringEncoding];
+            NSString *strPass = [[NSString alloc] initWithData:encryptPassword encoding:NSASCIIStringEncoding];
+            NSString *strTok = [[NSString alloc] initWithData:encryptToken encoding:NSASCIIStringEncoding];
+            
+            BOOL storeUsername = [SSKeychain setPassword:strUser forService:@"iChangeUserName" account:@"iChange"];
+            BOOL storePassword = [SSKeychain setPassword:strPass forService:@"iChangeUserPassword" account:@"iChange"];
+            BOOL storeToken = [SSKeychain setPassword:strTok forService:@"iChangeUserToken" account:@"iChange"];*/
+            
+            //Store user token in Keychain
+            BOOL storeUsername = [SSKeychain setPassword:self.txtUsername.text forService:@"iChangeUserName" account:@"iChange"];
+            BOOL storePassword = [SSKeychain setPassword:self.txtPassword.text forService:@"iChangeUserPassword" account:@"iChange"];
+            BOOL storeToken = [SSKeychain setPassword:[[JSONObject objectForKey:@"data"] valueForKey:@"token"] forService:@"iChangeUserToken" account:@"iChange"];
+
+            if (storeUsername == YES && storePassword == YES && storeToken == YES) {
+                //iChangeAppDelegate *mainDelegate = (iChangeAppDelegate *)[[UIApplication sharedApplication]delegate];
+                //mainDelegate.timeStamp = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(newToken) userInfo:nil repeats:YES];
+                
+                loginSuccess = YES;
+                [self performSegueWithIdentifier:@"login_success" sender:nil];
+            }
+            else{
+                NSLog(@"Impossible to store all the fields in keychain =(");
+            }
         }
     }
     else{
@@ -235,6 +259,14 @@
     }
     
 }
+
+/*
+-(void)newToken{
+    NSLog(@"Token is expiring");
+    [SSKeychain deletePasswordForService:@"iChangeUserToken" account:@"iChange"];
+    [SSKeychain deletePasswordForService:@"iChangeUserPassword" account:@"iChange"];
+    [SSKeychain deletePasswordForService:@"iChangeUserName" account:@"iChange"];
+}*/
 
 - (IBAction)goToSignUp:(id)sender {
 
