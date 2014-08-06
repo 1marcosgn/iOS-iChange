@@ -91,6 +91,7 @@
 		7D970EC6198AFC7A00D07B75 /* RNCryptorEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D970EC0198AFC7A00D07B75 /* RNCryptorEngine.m */; };
 		7D970EC7198AFC7A00D07B75 /* RNDecryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D970EC2198AFC7A00D07B75 /* RNDecryptor.m */; };
 		7D970EC8198AFC7A00D07B75 /* RNEncryptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D970EC4198AFC7A00D07B75 /* RNEncryptor.m */; };
+		B157544B1992B19B00DAC0D0 /* userInputValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B157544A1992B19B00DAC0D0 /* userInputValidator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -217,6 +218,8 @@
 		7D970EC2198AFC7A00D07B75 /* RNDecryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNDecryptor.m; sourceTree = "<group>"; };
 		7D970EC3198AFC7A00D07B75 /* RNEncryptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNEncryptor.h; sourceTree = "<group>"; };
 		7D970EC4198AFC7A00D07B75 /* RNEncryptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNEncryptor.m; sourceTree = "<group>"; };
+		B15754491992B19B00DAC0D0 /* userInputValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = userInputValidator.h; sourceTree = "<group>"; };
+		B157544A1992B19B00DAC0D0 /* userInputValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = userInputValidator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +284,8 @@
 		530F7C16196F4BA400316D6E /* iChange */ = {
 			isa = PBXGroup;
 			children = (
+				B15754491992B19B00DAC0D0 /* userInputValidator.h */,
+				B157544A1992B19B00DAC0D0 /* userInputValidator.m */,
 				53DB0CA41981BD36006AA0E1 /* initaliChangeView */,
 				53BC559E19709A8000C063DF /* ichangeLogin */,
 				53BC55951970972200C063DF /* herbalifeLogin */,
@@ -661,7 +666,6 @@
 				7D970EC5198AFC7A00D07B75 /* RNCryptor.m in Sources */,
 				7D970EB4198ADDA300D07B75 /* SSKeychain.m in Sources */,
 				7D970EB5198ADDA300D07B75 /* SSKeychainQuery.m in Sources */,
-				53BC55A51970AA7400C063DF /* UserInfoViewController.m in Sources */,
 				53BC5592197074D100C063DF /* SBJsonWriter.m in Sources */,
 				530F7C21196F4BA400316D6E /* iChangeAppDelegate.m in Sources */,
 				53DB0CA71981BD50006AA0E1 /* initialiChangeViewController.m in Sources */,
@@ -669,6 +673,7 @@
 				53BC55A119709A9300C063DF /* ichangeLoginViewController.m in Sources */,
 				53F20BAD19807F32000E028E /* SettingsTableViewController.m in Sources */,
 				53BC5591197074D100C063DF /* SBJsonParser.m in Sources */,
+				B157544B1992B19B00DAC0D0 /* userInputValidator.m in Sources */,
 				53BC558F197074D100C063DF /* NSString+SBJSON.m in Sources */,
 				530F7C1D196F4BA400316D6E /* main.m in Sources */,
 			);

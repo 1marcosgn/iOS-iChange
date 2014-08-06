@@ -8,6 +8,7 @@
 
 #import "userDetailsViewController.h"
 #import "iChangeViewController.h"
+#import "userInputValidator.h"
 
 @interface userDetailsViewController (){
     
@@ -16,6 +17,9 @@
     NSString *gender;
     NSString *height;
     NSMutableArray *modelArray;
+    NSArray *keys;
+    NSInteger validationErrorIndex;
+
 }
 
 @property ConnectionViewController *connection;
@@ -45,11 +49,13 @@
 -(void)setViewItems{
     
     modelArray = [[NSMutableArray alloc]init];
+    keys = @[@"username",@"password",@"retypepassword",@"mobile_phone",@"first_name",@"last_name",@"height",@"weight",@"birthdate",@"gender"];
     
     for (int i = 0; i < 10; i++) {
-        [modelArray addObject:@""];
+        modelArray[i] = [NSMutableDictionary dictionaryWithObjects:@[@"",keys[i],@"false"] forKeys:@[@"text",@"type",@"validation_error"]];
     }
     
+
     dictionaryGlobal = [NSMutableDictionary dictionary];
     gender = @"female";
 
@@ -121,47 +127,39 @@
 }
 
 -(BOOL)validateFields{
-    BOOL infoIsComplete = YES;
-    if ([modelArray count] == 10) {
-        for (int i = 0; i<[modelArray count]; i++) {
-            if ([[modelArray objectAtIndex:i] isEqualToString:@""]) {
-                infoIsComplete = NO;
-            }
-        }
+    NSMutableArray *tmp = [[NSMutableArray alloc] init];
+    tmp = [modelArray copy];
+    NSInteger index = -1;
+    if ([userInputValidator validate:&tmp errorIndexAt:&index]) {
+        validationErrorIndex = index;
+        return true;
+    } else {
+        modelArray = tmp;
+        return false;
     }
-    return infoIsComplete;
 }
 
 -(void)done{
     //Check if all the fields are complete..
     if ([self validateFields]) {
         [self createAccount];
+    } else {
+        [self.tableUserDetails reloadData];
+        [self changeTablePosition:(int)validationErrorIndex];
+
     }
-    else{
-        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please complete all the information before continue" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-    }
+/*        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Please complete all the information before continue" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];*/
+
 }
 
 -(void)createAccount{
   
     //NSLog(@"Info model is: %@", modelArray);
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    NSMutableArray *keys = [[NSMutableArray alloc]init];
-    
-    [keys addObject:@"username"];
-    [keys addObject:@"password"];
-    [keys addObject:@"retypepassword"];
-    [keys addObject:@"mobile_phone"];
-    [keys addObject:@"first_name"];
-    [keys addObject:@"last_name"];
-    [keys addObject:@"height"];
-    [keys addObject:@"weight"];
-    [keys addObject:@"birthdate"];
-    [keys addObject:@"gender"];
     
     for (int i = 0; i < [modelArray count]; i++) {
-        [parameters setObject:[modelArray objectAtIndex:i] forKey:[keys objectAtIndex:i]];
+        [parameters setObject:[[modelArray objectAtIndex:i] valueForKey:@"text"] forKey:[keys objectAtIndex:i]];
     }
     
     //missing info..
@@ -176,8 +174,8 @@
     [parameters setObject:@"[""72x72"",""100x100""]" forKey:@"thumbnails"];
   
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:[modelArray objectAtIndex:0] forKey:@"username"];
-    [userDefaults setObject:[modelArray objectAtIndex:1] forKey:@"password"];
+    [userDefaults setObject:[[modelArray objectAtIndex:0] valueForKey:@"text"] forKey:@"username"];
+    [userDefaults setObject:[[modelArray objectAtIndex:1] valueForKey:@"text"] forKey:@"password"];
   
   
     self.connection = [[ConnectionViewController alloc]init];
@@ -383,7 +381,10 @@
     
     for (userDetailsCellTableViewCell *element in cells) {
         NSString *tagText = [NSString stringWithFormat:@"%ld", (long)element.txtInformation.tag];
-        [modelArray replaceObjectAtIndex:[tagText intValue] withObject:element.txtInformation.text];
+        NSMutableDictionary *cellInfo = [modelArray objectAtIndex:[tagText intValue]];
+        [cellInfo setObject:[element.txtInformation.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"text"];
+        [cellInfo setObject:[keys objectAtIndex:[tagText intValue]] forKey:@"type"];
+        //[modelArray replaceObjectAtIndex:[tagText intValue] withObject:element.txtInformation.text];
     }
     //NSLog(@"%@", modelArray);
 }
@@ -405,18 +406,28 @@
                 [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 
                 if (section == 0) {
+                    NSMutableDictionary *element = [modelArray objectAtIndex:0];
+                    
                     [cell.txtInformation setTag:0];
                     [cell.lblDescription setText:@"Username"];
                     [cell.txtInformation setPlaceholder:@"Type your username"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:0];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
                     cell.delegate = self;
                     
                 }
                 else if (section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:4];
+
                     [cell.txtInformation setTag:4];
                     [cell.lblDescription setText:@"First Name"];
                     [cell.txtInformation setPlaceholder:@"Type your name"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:4];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
                     cell.delegate = self;
                     
                 }
@@ -432,20 +443,32 @@
                 cell = [nib objectAtIndex:0];
                 
                 if (section == 0) {
+                    NSMutableDictionary *element = [modelArray objectAtIndex:1];
+                    
                     [cell.txtInformation setTag:1];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Password"];
                     [cell.txtInformation setPlaceholder:@"Type your password"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:1];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
                 else if(section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:5];
+                    
                     [cell.txtInformation setTag:5];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Last Name"];
                     [cell.txtInformation setPlaceholder:@"Type your last name"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:5];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
@@ -459,20 +482,34 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
                 if (section == 0) {
+                    NSMutableDictionary *element = [modelArray objectAtIndex:2];
+
                     [cell.txtInformation setTag:2];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Confirm Password"];
                     [cell.txtInformation setPlaceholder:@"re-type your password"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:2];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
                 else if (section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:6];
+                    
                     [cell.txtInformation setTag:6];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Height"];
                     [cell.txtInformation setPlaceholder:@"ft. in."];
-                    cell.txtInformation.text = [modelArray objectAtIndex:6];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
@@ -486,20 +523,32 @@
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"userDetailsCellTableViewCell" owner:self options:nil];
                 cell = [nib objectAtIndex:0];
                 if (section == 0) {
+                    NSMutableDictionary *element = [modelArray objectAtIndex:3];
+                    
                     [cell.txtInformation setTag:3];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Mobile Phone"];
                     [cell.txtInformation setPlaceholder:@"xxx-xxx-xxx"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:3];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
                 else if (section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:7];
+                    
                     [cell.txtInformation setTag:7];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Starting Weight"];
                     [cell.txtInformation setPlaceholder:@"lb."];
-                    cell.txtInformation.text = [modelArray objectAtIndex:7];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
@@ -515,11 +564,17 @@
                     break;
                 }
                 else if (section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:8];
+                    
                     [cell.txtInformation setTag:8];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Date of Birth"];
                     [cell.txtInformation setPlaceholder:@"mm/dd/yyyy"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:8];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
@@ -535,11 +590,17 @@
                     break;
                 }
                 else if (section == 1){
+                    NSMutableDictionary *element = [modelArray objectAtIndex:9];
+                    
                     [cell.txtInformation setTag:9];
                     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                     [cell.lblDescription setText:@"Gender"];
                     [cell.txtInformation setPlaceholder:@"female/male"];
-                    cell.txtInformation.text = [modelArray objectAtIndex:9];
+                    if ([[element objectForKey:@"validation_error"] isEqualToString:@"true"]) {
+                        [cell setBackgroundColor:[UIColor redColor]];
+                    }
+                    cell.txtInformation.text = [element objectForKey:@"text"];
+
                     cell.delegate = self;
                     
                 }
@@ -650,3 +711,4 @@
 }
 
 @end
+
